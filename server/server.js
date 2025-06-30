@@ -6,8 +6,7 @@ var express = require('express'),
     games = new GameCollection();
 
 app.configure(function () {
-  // Serve static assets from Next.js public directory
-  app.use(express.static(__dirname + '/../public'));
+  app.use(express.static(__dirname + '/../game'));
 });
 
 server.listen(55555);
