@@ -4,7 +4,6 @@
     <title>mk.js</title>
     <script src="src/movement.js"></script>
     <script src="src/mk.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="styles/styles.css" />
 </head>
 <body>
@@ -103,10 +102,8 @@
                         }
 
                     },
-                    isHost: /^yes$/i.test(prompt('Are you going to be host?')),
-                    gameName: prompt('Enter game name:'),
-                    gameType: 'network'
-                };
+                    gameType: 'multiplayer'
+                  };
 
                 function startNewGame() {
                     mk.start(options).ready(function () {
