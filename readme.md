@@ -1,5 +1,9 @@
 # mk.js
 
+This project has been converted to a **Next.js 15** application. The game assets
+are now located under the `public/` directory and can be served by running the
+Next.js development server.
+
 This is simple fighting game created with HTML5 canvas and JavaScript. It has three game modes:
 * `Basic` - with one active and on inactive player.
 * `Multiplayer` - with two active players on one computer.
@@ -19,6 +23,13 @@ For the network game you need to install the server:
     node server.js
 
 The server will be started on port `55555`. Open your browser and go to `http://localhost:55555`. Both players must enter the same game name to play together.
+
+For local development of the Next.js application run:
+
+    npm install
+    npm run dev
+
+The game will be available at `http://localhost:3000`.
 
 # Configuration
 
