@@ -1,0 +1,4886 @@
+===== START ./.gitignore =====
+node_modules
+.next
+===== END ./.gitignore =====
+
+===== START ./app/layout.js =====
+export const metadata = {
+  title: 'mk.js',
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
+===== END ./app/layout.js =====
+
+===== START ./app/page.js =====
+export default function Page() {
+  return (
+    <iframe
+      src="/index.html"
+      style={{ width: '100%', height: '100vh', border: 'none' }}
+    />
+  );
+}
+===== END ./app/page.js =====
+
+===== START ./generate_llm.sh =====
+#!/bin/bash
+output="llm.txt"
+rm -f "$output"
+
+# list all files
+files=$(find . -type f ! -path "./.git/*" | sort)
+for f in $files; do
+  if [[ $f == ./public/images/* ]]; then
+    echo "Image: $f" >> "$output"
+  else
+    echo "===== START $f =====" >> "$output"
+    cat "$f" >> "$output"
+    echo "===== END $f =====" >> "$output"
+  fi
+  echo "" >> "$output"
+done
+===== END ./generate_llm.sh =====
+
+===== START ./next.config.js =====
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+};
+
+module.exports = nextConfig;
+===== END ./next.config.js =====
+
+===== START ./package-lock.json =====
+{
+  "name": "mkjs-next",
+  "version": "0.0.1",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "mkjs-next",
+      "version": "0.0.1",
+      "dependencies": {
+        "next": "15.3.4",
+        "react": "19.1.0",
+        "react-dom": "19.1.0"
+      }
+    },
+    "node_modules/@emnapi/runtime": {
+      "version": "1.4.3",
+      "resolved": "https://registry.npmjs.org/@emnapi/runtime/-/runtime-1.4.3.tgz",
+      "integrity": "sha512-pBPWdu6MLKROBX05wSNKcNb++m5Er+KQ9QkB+WVM+pW2Kx9hoSrVTnu3BdkI5eBLZoKu/J6mW/B6i6bJB2ytXQ==",
+      "license": "MIT",
+      "optional": true,
+      "dependencies": {
+        "tslib": "^2.4.0"
+      }
+    },
+    "node_modules/@img/sharp-darwin-arm64": {
+      "version": "0.34.2",
+      "resolved": "https://registry.npmjs.org/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.34.2.tgz",
+      "integrity": "sha512-OfXHZPppddivUJnqyKoi5YVeHRkkNE2zUFT2gbpKxp/JZCFYEYubnMg+gOp6lWfasPrTS+KPosKqdI+ELYVDtg==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-darwin-arm64": "1.1.0"
+      }
+    },
+    "node_modules/@img/sharp-darwin-x64": {
+      "version": "0.34.2",
+      "resolved": "https://registry.npmjs.org/@img/sharp-darwin-x64/-/sharp-darwin-x64-0.34.2.tgz",
+      "integrity": "sha512-dYvWqmjU9VxqXmjEtjmvHnGqF8GrVjM2Epj9rJ6BUIXvk8slvNDJbhGFvIoXzkDhrJC2jUxNLz/GUjjvSzfw+g==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-darwin-x64": "1.1.0"
+      }
+    },
+    "node_modules/@img/sharp-libvips-darwin-arm64": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-darwin-arm64/-/sharp-libvips-darwin-arm64-1.1.0.tgz",
+      "integrity": "sha512-HZ/JUmPwrJSoM4DIQPv/BfNh9yrOA8tlBbqbLz4JZ5uew2+o22Ik+tHQJcih7QJuSa0zo5coHTfD5J8inqj9DA==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-darwin-x64": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-darwin-x64/-/sharp-libvips-darwin-x64-1.1.0.tgz",
+      "integrity": "sha512-Xzc2ToEmHN+hfvsl9wja0RlnXEgpKNmftriQp6XzY/RaSfwD9th+MSh0WQKzUreLKKINb3afirxW7A0fz2YWuQ==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-arm": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-arm/-/sharp-libvips-linux-arm-1.1.0.tgz",
+      "integrity": "sha512-s8BAd0lwUIvYCJyRdFqvsj+BJIpDBSxs6ivrOPm/R7piTs5UIwY5OjXrP2bqXC9/moGsyRa37eYWYCOGVXxVrA==",
+      "cpu": [
+        "arm"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-arm64": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-arm64/-/sharp-libvips-linux-arm64-1.1.0.tgz",
+      "integrity": "sha512-IVfGJa7gjChDET1dK9SekxFFdflarnUB8PwW8aGwEoF3oAsSDuNUTYS+SKDOyOJxQyDC1aPFMuRYLoDInyV9Ew==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-ppc64": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-ppc64/-/sharp-libvips-linux-ppc64-1.1.0.tgz",
+      "integrity": "sha512-tiXxFZFbhnkWE2LA8oQj7KYR+bWBkiV2nilRldT7bqoEZ4HiDOcePr9wVDAZPi/Id5fT1oY9iGnDq20cwUz8lQ==",
+      "cpu": [
+        "ppc64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-s390x": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-s390x/-/sharp-libvips-linux-s390x-1.1.0.tgz",
+      "integrity": "sha512-xukSwvhguw7COyzvmjydRb3x/09+21HykyapcZchiCUkTThEQEOMtBj9UhkaBRLuBrgLFzQ2wbxdeCCJW/jgJA==",
+      "cpu": [
+        "s390x"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linux-x64": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linux-x64/-/sharp-libvips-linux-x64-1.1.0.tgz",
+      "integrity": "sha512-yRj2+reB8iMg9W5sULM3S74jVS7zqSzHG3Ol/twnAAkAhnGQnpjj6e4ayUz7V+FpKypwgs82xbRdYtchTTUB+Q==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linuxmusl-arm64": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linuxmusl-arm64/-/sharp-libvips-linuxmusl-arm64-1.1.0.tgz",
+      "integrity": "sha512-jYZdG+whg0MDK+q2COKbYidaqW/WTz0cc1E+tMAusiDygrM4ypmSCjOJPmFTvHHJ8j/6cAGyeDWZOsK06tP33w==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-libvips-linuxmusl-x64": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/@img/sharp-libvips-linuxmusl-x64/-/sharp-libvips-linuxmusl-x64-1.1.0.tgz",
+      "integrity": "sha512-wK7SBdwrAiycjXdkPnGCPLjYb9lD4l6Ze2gSdAGVZrEL05AOUJESWU2lhlC+Ffn5/G+VKuSm6zzbQSzFX/P65A==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-linux-arm": {
+      "version": "0.34.2",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-arm/-/sharp-linux-arm-0.34.2.tgz",
+      "integrity": "sha512-0DZzkvuEOqQUP9mo2kjjKNok5AmnOr1jB2XYjkaoNRwpAYMDzRmAqUIa1nRi58S2WswqSfPOWLNOr0FDT3H5RQ==",
+      "cpu": [
+        "arm"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-arm": "1.1.0"
+      }
+    },
+    "node_modules/@img/sharp-linux-arm64": {
+      "version": "0.34.2",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-arm64/-/sharp-linux-arm64-0.34.2.tgz",
+      "integrity": "sha512-D8n8wgWmPDakc83LORcfJepdOSN6MvWNzzz2ux0MnIbOqdieRZwVYY32zxVx+IFUT8er5KPcyU3XXsn+GzG/0Q==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-arm64": "1.1.0"
+      }
+    },
+    "node_modules/@img/sharp-linux-s390x": {
+      "version": "0.34.2",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-s390x/-/sharp-linux-s390x-0.34.2.tgz",
+      "integrity": "sha512-EGZ1xwhBI7dNISwxjChqBGELCWMGDvmxZXKjQRuqMrakhO8QoMgqCrdjnAqJq/CScxfRn+Bb7suXBElKQpPDiw==",
+      "cpu": [
+        "s390x"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-s390x": "1.1.0"
+      }
+    },
+    "node_modules/@img/sharp-linux-x64": {
+      "version": "0.34.2",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linux-x64/-/sharp-linux-x64-0.34.2.tgz",
+      "integrity": "sha512-sD7J+h5nFLMMmOXYH4DD9UtSNBD05tWSSdWAcEyzqW8Cn5UxXvsHAxmxSesYUsTOBmUnjtxghKDl15EvfqLFbQ==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linux-x64": "1.1.0"
+      }
+    },
+    "node_modules/@img/sharp-linuxmusl-arm64": {
+      "version": "0.34.2",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linuxmusl-arm64/-/sharp-linuxmusl-arm64-0.34.2.tgz",
+      "integrity": "sha512-NEE2vQ6wcxYav1/A22OOxoSOGiKnNmDzCYFOZ949xFmrWZOVII1Bp3NqVVpvj+3UeHMFyN5eP/V5hzViQ5CZNA==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linuxmusl-arm64": "1.1.0"
+      }
+    },
+    "node_modules/@img/sharp-linuxmusl-x64": {
+      "version": "0.34.2",
+      "resolved": "https://registry.npmjs.org/@img/sharp-linuxmusl-x64/-/sharp-linuxmusl-x64-0.34.2.tgz",
+      "integrity": "sha512-DOYMrDm5E6/8bm/yQLCWyuDJwUnlevR8xtF8bs+gjZ7cyUNYXiSf/E8Kp0Ss5xasIaXSHzb888V1BE4i1hFhAA==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "Apache-2.0",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-libvips-linuxmusl-x64": "1.1.0"
+      }
+    },
+    "node_modules/@img/sharp-wasm32": {
+      "version": "0.34.2",
+      "resolved": "https://registry.npmjs.org/@img/sharp-wasm32/-/sharp-wasm32-0.34.2.tgz",
+      "integrity": "sha512-/VI4mdlJ9zkaq53MbIG6rZY+QRN3MLbR6usYlgITEzi4Rpx5S6LFKsycOQjkOGmqTNmkIdLjEvooFKwww6OpdQ==",
+      "cpu": [
+        "wasm32"
+      ],
+      "license": "Apache-2.0 AND LGPL-3.0-or-later AND MIT",
+      "optional": true,
+      "dependencies": {
+        "@emnapi/runtime": "^1.4.3"
+      },
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-win32-arm64": {
+      "version": "0.34.2",
+      "resolved": "https://registry.npmjs.org/@img/sharp-win32-arm64/-/sharp-win32-arm64-0.34.2.tgz",
+      "integrity": "sha512-cfP/r9FdS63VA5k0xiqaNaEoGxBg9k7uE+RQGzuK9fHt7jib4zAVVseR9LsE4gJcNWgT6APKMNnCcnyOtmSEUQ==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "Apache-2.0 AND LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-win32-ia32": {
+      "version": "0.34.2",
+      "resolved": "https://registry.npmjs.org/@img/sharp-win32-ia32/-/sharp-win32-ia32-0.34.2.tgz",
+      "integrity": "sha512-QLjGGvAbj0X/FXl8n1WbtQ6iVBpWU7JO94u/P2M4a8CFYsvQi4GW2mRy/JqkRx0qpBzaOdKJKw8uc930EX2AHw==",
+      "cpu": [
+        "ia32"
+      ],
+      "license": "Apache-2.0 AND LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@img/sharp-win32-x64": {
+      "version": "0.34.2",
+      "resolved": "https://registry.npmjs.org/@img/sharp-win32-x64/-/sharp-win32-x64-0.34.2.tgz",
+      "integrity": "sha512-aUdT6zEYtDKCaxkofmmJDJYGCf0+pJg3eU9/oBuqvEeoB9dKI6ZLc/1iLJCTuJQDO4ptntAlkUmHgGjyuobZbw==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "Apache-2.0 AND LGPL-3.0-or-later",
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      }
+    },
+    "node_modules/@next/env": {
+      "version": "15.3.4",
+      "resolved": "https://registry.npmjs.org/@next/env/-/env-15.3.4.tgz",
+      "integrity": "sha512-ZkdYzBseS6UjYzz6ylVKPOK+//zLWvD6Ta+vpoye8cW11AjiQjGYVibF0xuvT4L0iJfAPfZLFidaEzAOywyOAQ==",
+      "license": "MIT"
+    },
+    "node_modules/@next/swc-darwin-arm64": {
+      "version": "15.3.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-15.3.4.tgz",
+      "integrity": "sha512-z0qIYTONmPRbwHWvpyrFXJd5F9YWLCsw3Sjrzj2ZvMYy9NPQMPZ1NjOJh4ojr4oQzcGYwgJKfidzehaNa1BpEg==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "MIT",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@next/swc-darwin-x64": {
+      "version": "15.3.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-15.3.4.tgz",
+      "integrity": "sha512-Z0FYJM8lritw5Wq+vpHYuCIzIlEMjewG2aRkc3Hi2rcbULknYL/xqfpBL23jQnCSrDUGAo/AEv0Z+s2bff9Zkw==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "MIT",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@next/swc-linux-arm64-gnu": {
+      "version": "15.3.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-15.3.4.tgz",
+      "integrity": "sha512-l8ZQOCCg7adwmsnFm8m5q9eIPAHdaB2F3cxhufYtVo84pymwKuWfpYTKcUiFcutJdp9xGHC+F1Uq3xnFU1B/7g==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "MIT",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@next/swc-linux-arm64-musl": {
+      "version": "15.3.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-15.3.4.tgz",
+      "integrity": "sha512-wFyZ7X470YJQtpKot4xCY3gpdn8lE9nTlldG07/kJYexCUpX1piX+MBfZdvulo+t1yADFVEuzFfVHfklfEx8kw==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "MIT",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@next/swc-linux-x64-gnu": {
+      "version": "15.3.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-15.3.4.tgz",
+      "integrity": "sha512-gEbH9rv9o7I12qPyvZNVTyP/PWKqOp8clvnoYZQiX800KkqsaJZuOXkWgMa7ANCCh/oEN2ZQheh3yH8/kWPSEg==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "MIT",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@next/swc-linux-x64-musl": {
+      "version": "15.3.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-15.3.4.tgz",
+      "integrity": "sha512-Cf8sr0ufuC/nu/yQ76AnarbSAXcwG/wj+1xFPNbyNo8ltA6kw5d5YqO8kQuwVIxk13SBdtgXrNyom3ZosHAy4A==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "MIT",
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@next/swc-win32-arm64-msvc": {
+      "version": "15.3.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-15.3.4.tgz",
+      "integrity": "sha512-ay5+qADDN3rwRbRpEhTOreOn1OyJIXS60tg9WMYTWCy3fB6rGoyjLVxc4dR9PYjEdR2iDYsaF5h03NA+XuYPQQ==",
+      "cpu": [
+        "arm64"
+      ],
+      "license": "MIT",
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@next/swc-win32-x64-msvc": {
+      "version": "15.3.4",
+      "resolved": "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-15.3.4.tgz",
+      "integrity": "sha512-4kDt31Bc9DGyYs41FTL1/kNpDeHyha2TC0j5sRRoKCyrhNcfZ/nRQkAUlF27mETwm8QyHqIjHJitfcza2Iykfg==",
+      "cpu": [
+        "x64"
+      ],
+      "license": "MIT",
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "engines": {
+        "node": ">= 10"
+      }
+    },
+    "node_modules/@swc/counter": {
+      "version": "0.1.3",
+      "resolved": "https://registry.npmjs.org/@swc/counter/-/counter-0.1.3.tgz",
+      "integrity": "sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==",
+      "license": "Apache-2.0"
+    },
+    "node_modules/@swc/helpers": {
+      "version": "0.5.15",
+      "resolved": "https://registry.npmjs.org/@swc/helpers/-/helpers-0.5.15.tgz",
+      "integrity": "sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==",
+      "license": "Apache-2.0",
+      "dependencies": {
+        "tslib": "^2.8.0"
+      }
+    },
+    "node_modules/busboy": {
+      "version": "1.6.0",
+      "resolved": "https://registry.npmjs.org/busboy/-/busboy-1.6.0.tgz",
+      "integrity": "sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==",
+      "dependencies": {
+        "streamsearch": "^1.1.0"
+      },
+      "engines": {
+        "node": ">=10.16.0"
+      }
+    },
+    "node_modules/caniuse-lite": {
+      "version": "1.0.30001726",
+      "resolved": "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001726.tgz",
+      "integrity": "sha512-VQAUIUzBiZ/UnlM28fSp2CRF3ivUn1BWEvxMcVTNwpw91Py1pGbPIyIKtd+tzct9C3ouceCVdGAXxZOpZAsgdw==",
+      "funding": [
+        {
+          "type": "opencollective",
+          "url": "https://opencollective.com/browserslist"
+        },
+        {
+          "type": "tidelift",
+          "url": "https://tidelift.com/funding/github/npm/caniuse-lite"
+        },
+        {
+          "type": "github",
+          "url": "https://github.com/sponsors/ai"
+        }
+      ],
+      "license": "CC-BY-4.0"
+    },
+    "node_modules/client-only": {
+      "version": "0.0.1",
+      "resolved": "https://registry.npmjs.org/client-only/-/client-only-0.0.1.tgz",
+      "integrity": "sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==",
+      "license": "MIT"
+    },
+    "node_modules/color": {
+      "version": "4.2.3",
+      "resolved": "https://registry.npmjs.org/color/-/color-4.2.3.tgz",
+      "integrity": "sha512-1rXeuUUiGGrykh+CeBdu5Ie7OJwinCgQY0bc7GCRxy5xVHy+moaqkpL/jqQq0MtQOeYcrqEz4abc5f0KtU7W4A==",
+      "license": "MIT",
+      "optional": true,
+      "dependencies": {
+        "color-convert": "^2.0.1",
+        "color-string": "^1.9.0"
+      },
+      "engines": {
+        "node": ">=12.5.0"
+      }
+    },
+    "node_modules/color-convert": {
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz",
+      "integrity": "sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==",
+      "license": "MIT",
+      "optional": true,
+      "dependencies": {
+        "color-name": "~1.1.4"
+      },
+      "engines": {
+        "node": ">=7.0.0"
+      }
+    },
+    "node_modules/color-name": {
+      "version": "1.1.4",
+      "resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz",
+      "integrity": "sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==",
+      "license": "MIT",
+      "optional": true
+    },
+    "node_modules/color-string": {
+      "version": "1.9.1",
+      "resolved": "https://registry.npmjs.org/color-string/-/color-string-1.9.1.tgz",
+      "integrity": "sha512-shrVawQFojnZv6xM40anx4CkoDP+fZsw/ZerEMsW/pyzsRbElpsL/DBVW7q3ExxwusdNXI3lXpuhEZkzs8p5Eg==",
+      "license": "MIT",
+      "optional": true,
+      "dependencies": {
+        "color-name": "^1.0.0",
+        "simple-swizzle": "^0.2.2"
+      }
+    },
+    "node_modules/detect-libc": {
+      "version": "2.0.4",
+      "resolved": "https://registry.npmjs.org/detect-libc/-/detect-libc-2.0.4.tgz",
+      "integrity": "sha512-3UDv+G9CsCKO1WKMGw9fwq/SWJYbI0c5Y7LU1AXYoDdbhE2AHQ6N6Nb34sG8Fj7T5APy8qXDCKuuIHd1BR0tVA==",
+      "license": "Apache-2.0",
+      "optional": true,
+      "engines": {
+        "node": ">=8"
+      }
+    },
+    "node_modules/is-arrayish": {
+      "version": "0.3.2",
+      "resolved": "https://registry.npmjs.org/is-arrayish/-/is-arrayish-0.3.2.tgz",
+      "integrity": "sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==",
+      "license": "MIT",
+      "optional": true
+    },
+    "node_modules/nanoid": {
+      "version": "3.3.11",
+      "resolved": "https://registry.npmjs.org/nanoid/-/nanoid-3.3.11.tgz",
+      "integrity": "sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==",
+      "funding": [
+        {
+          "type": "github",
+          "url": "https://github.com/sponsors/ai"
+        }
+      ],
+      "license": "MIT",
+      "bin": {
+        "nanoid": "bin/nanoid.cjs"
+      },
+      "engines": {
+        "node": "^10 || ^12 || ^13.7 || ^14 || >=15.0.1"
+      }
+    },
+    "node_modules/next": {
+      "version": "15.3.4",
+      "resolved": "https://registry.npmjs.org/next/-/next-15.3.4.tgz",
+      "integrity": "sha512-mHKd50C+mCjam/gcnwqL1T1vPx/XQNFlXqFIVdgQdVAFY9iIQtY0IfaVflEYzKiqjeA7B0cYYMaCrmAYFjs4rA==",
+      "license": "MIT",
+      "dependencies": {
+        "@next/env": "15.3.4",
+        "@swc/counter": "0.1.3",
+        "@swc/helpers": "0.5.15",
+        "busboy": "1.6.0",
+        "caniuse-lite": "^1.0.30001579",
+        "postcss": "8.4.31",
+        "styled-jsx": "5.1.6"
+      },
+      "bin": {
+        "next": "dist/bin/next"
+      },
+      "engines": {
+        "node": "^18.18.0 || ^19.8.0 || >= 20.0.0"
+      },
+      "optionalDependencies": {
+        "@next/swc-darwin-arm64": "15.3.4",
+        "@next/swc-darwin-x64": "15.3.4",
+        "@next/swc-linux-arm64-gnu": "15.3.4",
+        "@next/swc-linux-arm64-musl": "15.3.4",
+        "@next/swc-linux-x64-gnu": "15.3.4",
+        "@next/swc-linux-x64-musl": "15.3.4",
+        "@next/swc-win32-arm64-msvc": "15.3.4",
+        "@next/swc-win32-x64-msvc": "15.3.4",
+        "sharp": "^0.34.1"
+      },
+      "peerDependencies": {
+        "@opentelemetry/api": "^1.1.0",
+        "@playwright/test": "^1.41.2",
+        "babel-plugin-react-compiler": "*",
+        "react": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
+        "react-dom": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
+        "sass": "^1.3.0"
+      },
+      "peerDependenciesMeta": {
+        "@opentelemetry/api": {
+          "optional": true
+        },
+        "@playwright/test": {
+          "optional": true
+        },
+        "babel-plugin-react-compiler": {
+          "optional": true
+        },
+        "sass": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/picocolors": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz",
+      "integrity": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==",
+      "license": "ISC"
+    },
+    "node_modules/postcss": {
+      "version": "8.4.31",
+      "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.4.31.tgz",
+      "integrity": "sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==",
+      "funding": [
+        {
+          "type": "opencollective",
+          "url": "https://opencollective.com/postcss/"
+        },
+        {
+          "type": "tidelift",
+          "url": "https://tidelift.com/funding/github/npm/postcss"
+        },
+        {
+          "type": "github",
+          "url": "https://github.com/sponsors/ai"
+        }
+      ],
+      "license": "MIT",
+      "dependencies": {
+        "nanoid": "^3.3.6",
+        "picocolors": "^1.0.0",
+        "source-map-js": "^1.0.2"
+      },
+      "engines": {
+        "node": "^10 || ^12 || >=14"
+      }
+    },
+    "node_modules/react": {
+      "version": "19.1.0",
+      "resolved": "https://registry.npmjs.org/react/-/react-19.1.0.tgz",
+      "integrity": "sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    },
+    "node_modules/react-dom": {
+      "version": "19.1.0",
+      "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-19.1.0.tgz",
+      "integrity": "sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==",
+      "license": "MIT",
+      "dependencies": {
+        "scheduler": "^0.26.0"
+      },
+      "peerDependencies": {
+        "react": "^19.1.0"
+      }
+    },
+    "node_modules/scheduler": {
+      "version": "0.26.0",
+      "resolved": "https://registry.npmjs.org/scheduler/-/scheduler-0.26.0.tgz",
+      "integrity": "sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==",
+      "license": "MIT"
+    },
+    "node_modules/semver": {
+      "version": "7.7.2",
+      "resolved": "https://registry.npmjs.org/semver/-/semver-7.7.2.tgz",
+      "integrity": "sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==",
+      "license": "ISC",
+      "optional": true,
+      "bin": {
+        "semver": "bin/semver.js"
+      },
+      "engines": {
+        "node": ">=10"
+      }
+    },
+    "node_modules/sharp": {
+      "version": "0.34.2",
+      "resolved": "https://registry.npmjs.org/sharp/-/sharp-0.34.2.tgz",
+      "integrity": "sha512-lszvBmB9QURERtyKT2bNmsgxXK0ShJrL/fvqlonCo7e6xBF8nT8xU6pW+PMIbLsz0RxQk3rgH9kd8UmvOzlMJg==",
+      "hasInstallScript": true,
+      "license": "Apache-2.0",
+      "optional": true,
+      "dependencies": {
+        "color": "^4.2.3",
+        "detect-libc": "^2.0.4",
+        "semver": "^7.7.2"
+      },
+      "engines": {
+        "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
+      },
+      "funding": {
+        "url": "https://opencollective.com/libvips"
+      },
+      "optionalDependencies": {
+        "@img/sharp-darwin-arm64": "0.34.2",
+        "@img/sharp-darwin-x64": "0.34.2",
+        "@img/sharp-libvips-darwin-arm64": "1.1.0",
+        "@img/sharp-libvips-darwin-x64": "1.1.0",
+        "@img/sharp-libvips-linux-arm": "1.1.0",
+        "@img/sharp-libvips-linux-arm64": "1.1.0",
+        "@img/sharp-libvips-linux-ppc64": "1.1.0",
+        "@img/sharp-libvips-linux-s390x": "1.1.0",
+        "@img/sharp-libvips-linux-x64": "1.1.0",
+        "@img/sharp-libvips-linuxmusl-arm64": "1.1.0",
+        "@img/sharp-libvips-linuxmusl-x64": "1.1.0",
+        "@img/sharp-linux-arm": "0.34.2",
+        "@img/sharp-linux-arm64": "0.34.2",
+        "@img/sharp-linux-s390x": "0.34.2",
+        "@img/sharp-linux-x64": "0.34.2",
+        "@img/sharp-linuxmusl-arm64": "0.34.2",
+        "@img/sharp-linuxmusl-x64": "0.34.2",
+        "@img/sharp-wasm32": "0.34.2",
+        "@img/sharp-win32-arm64": "0.34.2",
+        "@img/sharp-win32-ia32": "0.34.2",
+        "@img/sharp-win32-x64": "0.34.2"
+      }
+    },
+    "node_modules/simple-swizzle": {
+      "version": "0.2.2",
+      "resolved": "https://registry.npmjs.org/simple-swizzle/-/simple-swizzle-0.2.2.tgz",
+      "integrity": "sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==",
+      "license": "MIT",
+      "optional": true,
+      "dependencies": {
+        "is-arrayish": "^0.3.1"
+      }
+    },
+    "node_modules/source-map-js": {
+      "version": "1.2.1",
+      "resolved": "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.1.tgz",
+      "integrity": "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==",
+      "license": "BSD-3-Clause",
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    },
+    "node_modules/streamsearch": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/streamsearch/-/streamsearch-1.1.0.tgz",
+      "integrity": "sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==",
+      "engines": {
+        "node": ">=10.0.0"
+      }
+    },
+    "node_modules/styled-jsx": {
+      "version": "5.1.6",
+      "resolved": "https://registry.npmjs.org/styled-jsx/-/styled-jsx-5.1.6.tgz",
+      "integrity": "sha512-qSVyDTeMotdvQYoHWLNGwRFJHC+i+ZvdBRYosOFgC+Wg1vx4frN2/RG/NA7SYqqvKNLf39P2LSRA2pu6n0XYZA==",
+      "license": "MIT",
+      "dependencies": {
+        "client-only": "0.0.1"
+      },
+      "engines": {
+        "node": ">= 12.0.0"
+      },
+      "peerDependencies": {
+        "react": ">= 16.8.0 || 17.x.x || ^18.0.0-0 || ^19.0.0-0"
+      },
+      "peerDependenciesMeta": {
+        "@babel/core": {
+          "optional": true
+        },
+        "babel-plugin-macros": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/tslib": {
+      "version": "2.8.1",
+      "resolved": "https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz",
+      "integrity": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==",
+      "license": "0BSD"
+    }
+  }
+}
+===== END ./package-lock.json =====
+
+===== START ./package.json =====
+{
+  "name": "mkjs-next",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "15.3.4",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  }
+}
+===== END ./package.json =====
+
+Image: ./public/images/arenas/0/arena.png
+
+Image: ./public/images/arenas/1/arena.png
+
+Image: ./public/images/fighters/kano/left/attractive-stand-up/0.png
+
+Image: ./public/images/fighters/kano/left/attractive-stand-up/1.png
+
+Image: ./public/images/fighters/kano/left/attractive-stand-up/2.png
+
+Image: ./public/images/fighters/kano/left/attractive-stand-up/3.png
+
+Image: ./public/images/fighters/kano/left/backward-jump-kick/0.png
+
+Image: ./public/images/fighters/kano/left/backward-jump-kick/1.png
+
+Image: ./public/images/fighters/kano/left/backward-jump-kick/2.png
+
+Image: ./public/images/fighters/kano/left/backward-jump-punch/0.png
+
+Image: ./public/images/fighters/kano/left/backward-jump-punch/1.png
+
+Image: ./public/images/fighters/kano/left/backward-jump-punch/2.png
+
+Image: ./public/images/fighters/kano/left/backward-jump/0.png
+
+Image: ./public/images/fighters/kano/left/backward-jump/1.png
+
+Image: ./public/images/fighters/kano/left/backward-jump/2.png
+
+Image: ./public/images/fighters/kano/left/backward-jump/3.png
+
+Image: ./public/images/fighters/kano/left/backward-jump/4.png
+
+Image: ./public/images/fighters/kano/left/backward-jump/5.png
+
+Image: ./public/images/fighters/kano/left/backward-jump/6.png
+
+Image: ./public/images/fighters/kano/left/backward-jump/7.png
+
+Image: ./public/images/fighters/kano/left/blocking/0.png
+
+Image: ./public/images/fighters/kano/left/blocking/1.png
+
+Image: ./public/images/fighters/kano/left/blocking/2.png
+
+Image: ./public/images/fighters/kano/left/endure/0.png
+
+Image: ./public/images/fighters/kano/left/endure/1.png
+
+Image: ./public/images/fighters/kano/left/endure/2.png
+
+Image: ./public/images/fighters/kano/left/fall/0.png
+
+Image: ./public/images/fighters/kano/left/fall/1.png
+
+Image: ./public/images/fighters/kano/left/fall/2.png
+
+Image: ./public/images/fighters/kano/left/fall/3.png
+
+Image: ./public/images/fighters/kano/left/fall/4.png
+
+Image: ./public/images/fighters/kano/left/fall/5.png
+
+Image: ./public/images/fighters/kano/left/fall/6.png
+
+Image: ./public/images/fighters/kano/left/forward-jump-kick/0.png
+
+Image: ./public/images/fighters/kano/left/forward-jump-kick/1.png
+
+Image: ./public/images/fighters/kano/left/forward-jump-kick/2.png
+
+Image: ./public/images/fighters/kano/left/forward-jump-punch/0.png
+
+Image: ./public/images/fighters/kano/left/forward-jump-punch/1.png
+
+Image: ./public/images/fighters/kano/left/forward-jump-punch/2.png
+
+Image: ./public/images/fighters/kano/left/forward-jump/0.png
+
+Image: ./public/images/fighters/kano/left/forward-jump/1.png
+
+Image: ./public/images/fighters/kano/left/forward-jump/2.png
+
+Image: ./public/images/fighters/kano/left/forward-jump/3.png
+
+Image: ./public/images/fighters/kano/left/forward-jump/4.png
+
+Image: ./public/images/fighters/kano/left/forward-jump/5.png
+
+Image: ./public/images/fighters/kano/left/forward-jump/6.png
+
+Image: ./public/images/fighters/kano/left/forward-jump/7.png
+
+Image: ./public/images/fighters/kano/left/high-kick/0.png
+
+Image: ./public/images/fighters/kano/left/high-kick/1.png
+
+Image: ./public/images/fighters/kano/left/high-kick/2.png
+
+Image: ./public/images/fighters/kano/left/high-kick/3.png
+
+Image: ./public/images/fighters/kano/left/high-kick/4.png
+
+Image: ./public/images/fighters/kano/left/high-kick/5.png
+
+Image: ./public/images/fighters/kano/left/high-kick/6.png
+
+Image: ./public/images/fighters/kano/left/high-punch/0.png
+
+Image: ./public/images/fighters/kano/left/high-punch/1.png
+
+Image: ./public/images/fighters/kano/left/high-punch/2.png
+
+Image: ./public/images/fighters/kano/left/high-punch/3.png
+
+Image: ./public/images/fighters/kano/left/high-punch/4.png
+
+Image: ./public/images/fighters/kano/left/high-punch/5.png
+
+Image: ./public/images/fighters/kano/left/high-punch/6.png
+
+Image: ./public/images/fighters/kano/left/high-punch/7.png
+
+Image: ./public/images/fighters/kano/left/jumping/0.png
+
+Image: ./public/images/fighters/kano/left/jumping/1.png
+
+Image: ./public/images/fighters/kano/left/jumping/2.png
+
+Image: ./public/images/fighters/kano/left/jumping/3.png
+
+Image: ./public/images/fighters/kano/left/jumping/4.png
+
+Image: ./public/images/fighters/kano/left/jumping/5.png
+
+Image: ./public/images/fighters/kano/left/knock-down/0.png
+
+Image: ./public/images/fighters/kano/left/knock-down/1.png
+
+Image: ./public/images/fighters/kano/left/knock-down/2.png
+
+Image: ./public/images/fighters/kano/left/knock-down/3.png
+
+Image: ./public/images/fighters/kano/left/knock-down/4.png
+
+Image: ./public/images/fighters/kano/left/knock-down/5.png
+
+Image: ./public/images/fighters/kano/left/knock-down/6.png
+
+Image: ./public/images/fighters/kano/left/knock-down/7.png
+
+Image: ./public/images/fighters/kano/left/knock-down/8.png
+
+Image: ./public/images/fighters/kano/left/knock-down/9.png
+
+Image: ./public/images/fighters/kano/left/low-kick/0.png
+
+Image: ./public/images/fighters/kano/left/low-kick/1.png
+
+Image: ./public/images/fighters/kano/left/low-kick/2.png
+
+Image: ./public/images/fighters/kano/left/low-kick/3.png
+
+Image: ./public/images/fighters/kano/left/low-kick/4.png
+
+Image: ./public/images/fighters/kano/left/low-kick/5.png
+
+Image: ./public/images/fighters/kano/left/low-punch/0.png
+
+Image: ./public/images/fighters/kano/left/low-punch/1.png
+
+Image: ./public/images/fighters/kano/left/low-punch/2.png
+
+Image: ./public/images/fighters/kano/left/low-punch/3.png
+
+Image: ./public/images/fighters/kano/left/low-punch/4.png
+
+Image: ./public/images/fighters/kano/left/spin-kick/0.png
+
+Image: ./public/images/fighters/kano/left/spin-kick/1.png
+
+Image: ./public/images/fighters/kano/left/spin-kick/2.png
+
+Image: ./public/images/fighters/kano/left/spin-kick/3.png
+
+Image: ./public/images/fighters/kano/left/spin-kick/4.png
+
+Image: ./public/images/fighters/kano/left/spin-kick/5.png
+
+Image: ./public/images/fighters/kano/left/spin-kick/6.png
+
+Image: ./public/images/fighters/kano/left/spin-kick/7.png
+
+Image: ./public/images/fighters/kano/left/squat-endure/0.png
+
+Image: ./public/images/fighters/kano/left/squat-endure/1.png
+
+Image: ./public/images/fighters/kano/left/squat-endure/2.png
+
+Image: ./public/images/fighters/kano/left/squat-high-kick/0.png
+
+Image: ./public/images/fighters/kano/left/squat-high-kick/1.png
+
+Image: ./public/images/fighters/kano/left/squat-high-kick/2.png
+
+Image: ./public/images/fighters/kano/left/squat-high-kick/3.png
+
+Image: ./public/images/fighters/kano/left/squat-low-kick/0.png
+
+Image: ./public/images/fighters/kano/left/squat-low-kick/1.png
+
+Image: ./public/images/fighters/kano/left/squat-low-kick/2.png
+
+Image: ./public/images/fighters/kano/left/squat-low-punch/0.png
+
+Image: ./public/images/fighters/kano/left/squat-low-punch/1.png
+
+Image: ./public/images/fighters/kano/left/squat-low-punch/2.png
+
+Image: ./public/images/fighters/kano/left/squating/0.png
+
+Image: ./public/images/fighters/kano/left/squating/1.png
+
+Image: ./public/images/fighters/kano/left/squating/2.png
+
+Image: ./public/images/fighters/kano/left/stand-up/0.png
+
+Image: ./public/images/fighters/kano/left/stand-up/1.png
+
+Image: ./public/images/fighters/kano/left/stand-up/2.png
+
+Image: ./public/images/fighters/kano/left/stand/0.png
+
+Image: ./public/images/fighters/kano/left/stand/1.png
+
+Image: ./public/images/fighters/kano/left/stand/2.png
+
+Image: ./public/images/fighters/kano/left/stand/3.png
+
+Image: ./public/images/fighters/kano/left/stand/4.png
+
+Image: ./public/images/fighters/kano/left/stand/5.png
+
+Image: ./public/images/fighters/kano/left/stand/6.png
+
+Image: ./public/images/fighters/kano/left/stand/7.png
+
+Image: ./public/images/fighters/kano/left/stand/8.png
+
+Image: ./public/images/fighters/kano/left/uppercut/0.png
+
+Image: ./public/images/fighters/kano/left/uppercut/1.png
+
+Image: ./public/images/fighters/kano/left/uppercut/2.png
+
+Image: ./public/images/fighters/kano/left/uppercut/3.png
+
+Image: ./public/images/fighters/kano/left/uppercut/4.png
+
+Image: ./public/images/fighters/kano/left/uppercut/5.png
+
+Image: ./public/images/fighters/kano/left/walking-backward/0.png
+
+Image: ./public/images/fighters/kano/left/walking-backward/1.png
+
+Image: ./public/images/fighters/kano/left/walking-backward/2.png
+
+Image: ./public/images/fighters/kano/left/walking-backward/3.png
+
+Image: ./public/images/fighters/kano/left/walking-backward/4.png
+
+Image: ./public/images/fighters/kano/left/walking-backward/5.png
+
+Image: ./public/images/fighters/kano/left/walking-backward/6.png
+
+Image: ./public/images/fighters/kano/left/walking-backward/7.png
+
+Image: ./public/images/fighters/kano/left/walking-backward/8.png
+
+Image: ./public/images/fighters/kano/left/walking/0.png
+
+Image: ./public/images/fighters/kano/left/walking/1.png
+
+Image: ./public/images/fighters/kano/left/walking/2.png
+
+Image: ./public/images/fighters/kano/left/walking/3.png
+
+Image: ./public/images/fighters/kano/left/walking/4.png
+
+Image: ./public/images/fighters/kano/left/walking/5.png
+
+Image: ./public/images/fighters/kano/left/walking/6.png
+
+Image: ./public/images/fighters/kano/left/walking/7.png
+
+Image: ./public/images/fighters/kano/left/walking/8.png
+
+Image: ./public/images/fighters/kano/left/win/0.png
+
+Image: ./public/images/fighters/kano/left/win/1.png
+
+Image: ./public/images/fighters/kano/left/win/2.png
+
+Image: ./public/images/fighters/kano/left/win/3.png
+
+Image: ./public/images/fighters/kano/left/win/4.png
+
+Image: ./public/images/fighters/kano/left/win/5.png
+
+Image: ./public/images/fighters/kano/left/win/6.png
+
+Image: ./public/images/fighters/kano/left/win/7.png
+
+Image: ./public/images/fighters/kano/left/win/8.png
+
+Image: ./public/images/fighters/kano/left/win/9.png
+
+Image: ./public/images/fighters/kano/right/attractive-stand-up/0.png
+
+Image: ./public/images/fighters/kano/right/attractive-stand-up/1.png
+
+Image: ./public/images/fighters/kano/right/attractive-stand-up/2.png
+
+Image: ./public/images/fighters/kano/right/attractive-stand-up/3.png
+
+Image: ./public/images/fighters/kano/right/backward-jump-kick/0.png
+
+Image: ./public/images/fighters/kano/right/backward-jump-kick/1.png
+
+Image: ./public/images/fighters/kano/right/backward-jump-kick/2.png
+
+Image: ./public/images/fighters/kano/right/backward-jump-punch/0.png
+
+Image: ./public/images/fighters/kano/right/backward-jump-punch/1.png
+
+Image: ./public/images/fighters/kano/right/backward-jump-punch/2.png
+
+Image: ./public/images/fighters/kano/right/backward-jump/0.png
+
+Image: ./public/images/fighters/kano/right/backward-jump/1.png
+
+Image: ./public/images/fighters/kano/right/backward-jump/2.png
+
+Image: ./public/images/fighters/kano/right/backward-jump/3.png
+
+Image: ./public/images/fighters/kano/right/backward-jump/4.png
+
+Image: ./public/images/fighters/kano/right/backward-jump/5.png
+
+Image: ./public/images/fighters/kano/right/backward-jump/6.png
+
+Image: ./public/images/fighters/kano/right/backward-jump/7.png
+
+Image: ./public/images/fighters/kano/right/blocking/0.png
+
+Image: ./public/images/fighters/kano/right/blocking/1.png
+
+Image: ./public/images/fighters/kano/right/blocking/2.png
+
+Image: ./public/images/fighters/kano/right/endure/0.png
+
+Image: ./public/images/fighters/kano/right/endure/1.png
+
+Image: ./public/images/fighters/kano/right/endure/2.png
+
+Image: ./public/images/fighters/kano/right/fall/0.png
+
+Image: ./public/images/fighters/kano/right/fall/1.png
+
+Image: ./public/images/fighters/kano/right/fall/2.png
+
+Image: ./public/images/fighters/kano/right/fall/3.png
+
+Image: ./public/images/fighters/kano/right/fall/4.png
+
+Image: ./public/images/fighters/kano/right/fall/5.png
+
+Image: ./public/images/fighters/kano/right/fall/6.png
+
+Image: ./public/images/fighters/kano/right/forward-jump-kick/0.png
+
+Image: ./public/images/fighters/kano/right/forward-jump-kick/1.png
+
+Image: ./public/images/fighters/kano/right/forward-jump-kick/2.png
+
+Image: ./public/images/fighters/kano/right/forward-jump-punch/0.png
+
+Image: ./public/images/fighters/kano/right/forward-jump-punch/1.png
+
+Image: ./public/images/fighters/kano/right/forward-jump-punch/2.png
+
+Image: ./public/images/fighters/kano/right/forward-jump/0.png
+
+Image: ./public/images/fighters/kano/right/forward-jump/1.png
+
+Image: ./public/images/fighters/kano/right/forward-jump/2.png
+
+Image: ./public/images/fighters/kano/right/forward-jump/3.png
+
+Image: ./public/images/fighters/kano/right/forward-jump/4.png
+
+Image: ./public/images/fighters/kano/right/forward-jump/5.png
+
+Image: ./public/images/fighters/kano/right/forward-jump/6.png
+
+Image: ./public/images/fighters/kano/right/forward-jump/7.png
+
+Image: ./public/images/fighters/kano/right/high-kick/0.png
+
+Image: ./public/images/fighters/kano/right/high-kick/1.png
+
+Image: ./public/images/fighters/kano/right/high-kick/2.png
+
+Image: ./public/images/fighters/kano/right/high-kick/3.png
+
+Image: ./public/images/fighters/kano/right/high-kick/4.png
+
+Image: ./public/images/fighters/kano/right/high-kick/5.png
+
+Image: ./public/images/fighters/kano/right/high-kick/6.png
+
+Image: ./public/images/fighters/kano/right/high-punch/0.png
+
+Image: ./public/images/fighters/kano/right/high-punch/1.png
+
+Image: ./public/images/fighters/kano/right/high-punch/2.png
+
+Image: ./public/images/fighters/kano/right/high-punch/3.png
+
+Image: ./public/images/fighters/kano/right/high-punch/4.png
+
+Image: ./public/images/fighters/kano/right/high-punch/5.png
+
+Image: ./public/images/fighters/kano/right/high-punch/6.png
+
+Image: ./public/images/fighters/kano/right/high-punch/7.png
+
+Image: ./public/images/fighters/kano/right/jumping/0.png
+
+Image: ./public/images/fighters/kano/right/jumping/1.png
+
+Image: ./public/images/fighters/kano/right/jumping/2.png
+
+Image: ./public/images/fighters/kano/right/jumping/3.png
+
+Image: ./public/images/fighters/kano/right/jumping/4.png
+
+Image: ./public/images/fighters/kano/right/jumping/5.png
+
+Image: ./public/images/fighters/kano/right/knock-down/0.png
+
+Image: ./public/images/fighters/kano/right/knock-down/1.png
+
+Image: ./public/images/fighters/kano/right/knock-down/2.png
+
+Image: ./public/images/fighters/kano/right/knock-down/3.png
+
+Image: ./public/images/fighters/kano/right/knock-down/4.png
+
+Image: ./public/images/fighters/kano/right/knock-down/5.png
+
+Image: ./public/images/fighters/kano/right/knock-down/6.png
+
+Image: ./public/images/fighters/kano/right/knock-down/7.png
+
+Image: ./public/images/fighters/kano/right/knock-down/8.png
+
+Image: ./public/images/fighters/kano/right/knock-down/9.png
+
+Image: ./public/images/fighters/kano/right/low-kick/0.png
+
+Image: ./public/images/fighters/kano/right/low-kick/1.png
+
+Image: ./public/images/fighters/kano/right/low-kick/2.png
+
+Image: ./public/images/fighters/kano/right/low-kick/3.png
+
+Image: ./public/images/fighters/kano/right/low-kick/4.png
+
+Image: ./public/images/fighters/kano/right/low-kick/5.png
+
+Image: ./public/images/fighters/kano/right/low-punch/0.png
+
+Image: ./public/images/fighters/kano/right/low-punch/1.png
+
+Image: ./public/images/fighters/kano/right/low-punch/2.png
+
+Image: ./public/images/fighters/kano/right/low-punch/3.png
+
+Image: ./public/images/fighters/kano/right/low-punch/4.png
+
+Image: ./public/images/fighters/kano/right/spin-kick/0.png
+
+Image: ./public/images/fighters/kano/right/spin-kick/1.png
+
+Image: ./public/images/fighters/kano/right/spin-kick/2.png
+
+Image: ./public/images/fighters/kano/right/spin-kick/3.png
+
+Image: ./public/images/fighters/kano/right/spin-kick/4.png
+
+Image: ./public/images/fighters/kano/right/spin-kick/5.png
+
+Image: ./public/images/fighters/kano/right/spin-kick/6.png
+
+Image: ./public/images/fighters/kano/right/spin-kick/7.png
+
+Image: ./public/images/fighters/kano/right/squat-endure/0.png
+
+Image: ./public/images/fighters/kano/right/squat-endure/1.png
+
+Image: ./public/images/fighters/kano/right/squat-endure/2.png
+
+Image: ./public/images/fighters/kano/right/squat-high-kick/0.png
+
+Image: ./public/images/fighters/kano/right/squat-high-kick/1.png
+
+Image: ./public/images/fighters/kano/right/squat-high-kick/2.png
+
+Image: ./public/images/fighters/kano/right/squat-high-kick/3.png
+
+Image: ./public/images/fighters/kano/right/squat-low-kick/0.png
+
+Image: ./public/images/fighters/kano/right/squat-low-kick/1.png
+
+Image: ./public/images/fighters/kano/right/squat-low-kick/2.png
+
+Image: ./public/images/fighters/kano/right/squat-low-punch/0.png
+
+Image: ./public/images/fighters/kano/right/squat-low-punch/1.png
+
+Image: ./public/images/fighters/kano/right/squat-low-punch/2.png
+
+Image: ./public/images/fighters/kano/right/squating/0.png
+
+Image: ./public/images/fighters/kano/right/squating/1.png
+
+Image: ./public/images/fighters/kano/right/squating/2.png
+
+Image: ./public/images/fighters/kano/right/stand-up/0.png
+
+Image: ./public/images/fighters/kano/right/stand-up/1.png
+
+Image: ./public/images/fighters/kano/right/stand-up/2.png
+
+Image: ./public/images/fighters/kano/right/stand/0.png
+
+Image: ./public/images/fighters/kano/right/stand/1.png
+
+Image: ./public/images/fighters/kano/right/stand/2.png
+
+Image: ./public/images/fighters/kano/right/stand/3.png
+
+Image: ./public/images/fighters/kano/right/stand/4.png
+
+Image: ./public/images/fighters/kano/right/stand/5.png
+
+Image: ./public/images/fighters/kano/right/stand/6.png
+
+Image: ./public/images/fighters/kano/right/stand/7.png
+
+Image: ./public/images/fighters/kano/right/stand/8.png
+
+Image: ./public/images/fighters/kano/right/uppercut/0.png
+
+Image: ./public/images/fighters/kano/right/uppercut/1.png
+
+Image: ./public/images/fighters/kano/right/uppercut/2.png
+
+Image: ./public/images/fighters/kano/right/uppercut/3.png
+
+Image: ./public/images/fighters/kano/right/uppercut/4.png
+
+Image: ./public/images/fighters/kano/right/uppercut/5.png
+
+Image: ./public/images/fighters/kano/right/walking-backward/0.png
+
+Image: ./public/images/fighters/kano/right/walking-backward/1.png
+
+Image: ./public/images/fighters/kano/right/walking-backward/2.png
+
+Image: ./public/images/fighters/kano/right/walking-backward/3.png
+
+Image: ./public/images/fighters/kano/right/walking-backward/4.png
+
+Image: ./public/images/fighters/kano/right/walking-backward/5.png
+
+Image: ./public/images/fighters/kano/right/walking-backward/6.png
+
+Image: ./public/images/fighters/kano/right/walking-backward/7.png
+
+Image: ./public/images/fighters/kano/right/walking-backward/8.png
+
+Image: ./public/images/fighters/kano/right/walking/0.png
+
+Image: ./public/images/fighters/kano/right/walking/1.png
+
+Image: ./public/images/fighters/kano/right/walking/2.png
+
+Image: ./public/images/fighters/kano/right/walking/3.png
+
+Image: ./public/images/fighters/kano/right/walking/4.png
+
+Image: ./public/images/fighters/kano/right/walking/5.png
+
+Image: ./public/images/fighters/kano/right/walking/6.png
+
+Image: ./public/images/fighters/kano/right/walking/7.png
+
+Image: ./public/images/fighters/kano/right/walking/8.png
+
+Image: ./public/images/fighters/kano/right/win/0.png
+
+Image: ./public/images/fighters/kano/right/win/1.png
+
+Image: ./public/images/fighters/kano/right/win/2.png
+
+Image: ./public/images/fighters/kano/right/win/3.png
+
+Image: ./public/images/fighters/kano/right/win/4.png
+
+Image: ./public/images/fighters/kano/right/win/5.png
+
+Image: ./public/images/fighters/kano/right/win/6.png
+
+Image: ./public/images/fighters/kano/right/win/7.png
+
+Image: ./public/images/fighters/kano/right/win/8.png
+
+Image: ./public/images/fighters/kano/right/win/9.png
+
+Image: ./public/images/fighters/subzero/left/attractive-stand-up/0.png
+
+Image: ./public/images/fighters/subzero/left/attractive-stand-up/1.png
+
+Image: ./public/images/fighters/subzero/left/attractive-stand-up/2.png
+
+Image: ./public/images/fighters/subzero/left/attractive-stand-up/3.png
+
+Image: ./public/images/fighters/subzero/left/attractive-stand-up/4.png
+
+Image: ./public/images/fighters/subzero/left/backward-jump-kick/0.png
+
+Image: ./public/images/fighters/subzero/left/backward-jump-kick/1.png
+
+Image: ./public/images/fighters/subzero/left/backward-jump-kick/2.png
+
+Image: ./public/images/fighters/subzero/left/backward-jump-punch/0.png
+
+Image: ./public/images/fighters/subzero/left/backward-jump-punch/1.png
+
+Image: ./public/images/fighters/subzero/left/backward-jump-punch/2.png
+
+Image: ./public/images/fighters/subzero/left/backward-jump/0.png
+
+Image: ./public/images/fighters/subzero/left/backward-jump/1.png
+
+Image: ./public/images/fighters/subzero/left/backward-jump/2.png
+
+Image: ./public/images/fighters/subzero/left/backward-jump/3.png
+
+Image: ./public/images/fighters/subzero/left/backward-jump/4.png
+
+Image: ./public/images/fighters/subzero/left/backward-jump/5.png
+
+Image: ./public/images/fighters/subzero/left/backward-jump/6.png
+
+Image: ./public/images/fighters/subzero/left/backward-jump/7.png
+
+Image: ./public/images/fighters/subzero/left/blocking/0.png
+
+Image: ./public/images/fighters/subzero/left/blocking/1.png
+
+Image: ./public/images/fighters/subzero/left/blocking/2.png
+
+Image: ./public/images/fighters/subzero/left/endure/0.png
+
+Image: ./public/images/fighters/subzero/left/endure/1.png
+
+Image: ./public/images/fighters/subzero/left/endure/2.png
+
+Image: ./public/images/fighters/subzero/left/fall/0.png
+
+Image: ./public/images/fighters/subzero/left/fall/1.png
+
+Image: ./public/images/fighters/subzero/left/fall/2.png
+
+Image: ./public/images/fighters/subzero/left/fall/3.png
+
+Image: ./public/images/fighters/subzero/left/fall/4.png
+
+Image: ./public/images/fighters/subzero/left/fall/5.png
+
+Image: ./public/images/fighters/subzero/left/fall/6.png
+
+Image: ./public/images/fighters/subzero/left/forward-jump-kick/0.png
+
+Image: ./public/images/fighters/subzero/left/forward-jump-kick/1.png
+
+Image: ./public/images/fighters/subzero/left/forward-jump-kick/2.png
+
+Image: ./public/images/fighters/subzero/left/forward-jump-punch/0.png
+
+Image: ./public/images/fighters/subzero/left/forward-jump-punch/1.png
+
+Image: ./public/images/fighters/subzero/left/forward-jump-punch/2.png
+
+Image: ./public/images/fighters/subzero/left/forward-jump/0.png
+
+Image: ./public/images/fighters/subzero/left/forward-jump/1.png
+
+Image: ./public/images/fighters/subzero/left/forward-jump/2.png
+
+Image: ./public/images/fighters/subzero/left/forward-jump/3.png
+
+Image: ./public/images/fighters/subzero/left/forward-jump/4.png
+
+Image: ./public/images/fighters/subzero/left/forward-jump/5.png
+
+Image: ./public/images/fighters/subzero/left/forward-jump/6.png
+
+Image: ./public/images/fighters/subzero/left/forward-jump/7.png
+
+Image: ./public/images/fighters/subzero/left/high-kick/0.png
+
+Image: ./public/images/fighters/subzero/left/high-kick/1.png
+
+Image: ./public/images/fighters/subzero/left/high-kick/2.png
+
+Image: ./public/images/fighters/subzero/left/high-kick/3.png
+
+Image: ./public/images/fighters/subzero/left/high-kick/4.png
+
+Image: ./public/images/fighters/subzero/left/high-kick/5.png
+
+Image: ./public/images/fighters/subzero/left/high-kick/6.png
+
+Image: ./public/images/fighters/subzero/left/high-punch/0.png
+
+Image: ./public/images/fighters/subzero/left/high-punch/1.png
+
+Image: ./public/images/fighters/subzero/left/high-punch/2.png
+
+Image: ./public/images/fighters/subzero/left/high-punch/3.png
+
+Image: ./public/images/fighters/subzero/left/high-punch/4.png
+
+Image: ./public/images/fighters/subzero/left/high-punch/5.png
+
+Image: ./public/images/fighters/subzero/left/high-punch/6.png
+
+Image: ./public/images/fighters/subzero/left/high-punch/7.png
+
+Image: ./public/images/fighters/subzero/left/jumping/0.png
+
+Image: ./public/images/fighters/subzero/left/jumping/1.png
+
+Image: ./public/images/fighters/subzero/left/jumping/2.png
+
+Image: ./public/images/fighters/subzero/left/jumping/3.png
+
+Image: ./public/images/fighters/subzero/left/jumping/4.png
+
+Image: ./public/images/fighters/subzero/left/jumping/5.png
+
+Image: ./public/images/fighters/subzero/left/knock-down/0.png
+
+Image: ./public/images/fighters/subzero/left/knock-down/1.png
+
+Image: ./public/images/fighters/subzero/left/knock-down/2.png
+
+Image: ./public/images/fighters/subzero/left/knock-down/3.png
+
+Image: ./public/images/fighters/subzero/left/knock-down/4.png
+
+Image: ./public/images/fighters/subzero/left/knock-down/5.png
+
+Image: ./public/images/fighters/subzero/left/knock-down/6.png
+
+Image: ./public/images/fighters/subzero/left/knock-down/7.png
+
+Image: ./public/images/fighters/subzero/left/knock-down/8.png
+
+Image: ./public/images/fighters/subzero/left/knock-down/9.png
+
+Image: ./public/images/fighters/subzero/left/low-kick/0.png
+
+Image: ./public/images/fighters/subzero/left/low-kick/1.png
+
+Image: ./public/images/fighters/subzero/left/low-kick/2.png
+
+Image: ./public/images/fighters/subzero/left/low-kick/3.png
+
+Image: ./public/images/fighters/subzero/left/low-kick/4.png
+
+Image: ./public/images/fighters/subzero/left/low-kick/5.png
+
+Image: ./public/images/fighters/subzero/left/low-punch/0.png
+
+Image: ./public/images/fighters/subzero/left/low-punch/1.png
+
+Image: ./public/images/fighters/subzero/left/low-punch/2.png
+
+Image: ./public/images/fighters/subzero/left/low-punch/3.png
+
+Image: ./public/images/fighters/subzero/left/low-punch/4.png
+
+Image: ./public/images/fighters/subzero/left/spin-kick/0.png
+
+Image: ./public/images/fighters/subzero/left/spin-kick/1.png
+
+Image: ./public/images/fighters/subzero/left/spin-kick/2.png
+
+Image: ./public/images/fighters/subzero/left/spin-kick/3.png
+
+Image: ./public/images/fighters/subzero/left/spin-kick/4.png
+
+Image: ./public/images/fighters/subzero/left/spin-kick/5.png
+
+Image: ./public/images/fighters/subzero/left/spin-kick/6.png
+
+Image: ./public/images/fighters/subzero/left/spin-kick/7.png
+
+Image: ./public/images/fighters/subzero/left/squat-endure/0.png
+
+Image: ./public/images/fighters/subzero/left/squat-endure/1.png
+
+Image: ./public/images/fighters/subzero/left/squat-endure/2.png
+
+Image: ./public/images/fighters/subzero/left/squat-high-kick/0.png
+
+Image: ./public/images/fighters/subzero/left/squat-high-kick/1.png
+
+Image: ./public/images/fighters/subzero/left/squat-high-kick/2.png
+
+Image: ./public/images/fighters/subzero/left/squat-high-kick/3.png
+
+Image: ./public/images/fighters/subzero/left/squat-low-kick/0.png
+
+Image: ./public/images/fighters/subzero/left/squat-low-kick/1.png
+
+Image: ./public/images/fighters/subzero/left/squat-low-kick/2.png
+
+Image: ./public/images/fighters/subzero/left/squat-low-punch/0.png
+
+Image: ./public/images/fighters/subzero/left/squat-low-punch/1.png
+
+Image: ./public/images/fighters/subzero/left/squat-low-punch/2.png
+
+Image: ./public/images/fighters/subzero/left/squating/0.png
+
+Image: ./public/images/fighters/subzero/left/squating/1.png
+
+Image: ./public/images/fighters/subzero/left/squating/2.png
+
+Image: ./public/images/fighters/subzero/left/stand-up/0.png
+
+Image: ./public/images/fighters/subzero/left/stand-up/1.png
+
+Image: ./public/images/fighters/subzero/left/stand-up/2.png
+
+Image: ./public/images/fighters/subzero/left/stand/0.png
+
+Image: ./public/images/fighters/subzero/left/stand/1.png
+
+Image: ./public/images/fighters/subzero/left/stand/2.png
+
+Image: ./public/images/fighters/subzero/left/stand/3.png
+
+Image: ./public/images/fighters/subzero/left/stand/4.png
+
+Image: ./public/images/fighters/subzero/left/stand/5.png
+
+Image: ./public/images/fighters/subzero/left/stand/6.png
+
+Image: ./public/images/fighters/subzero/left/stand/7.png
+
+Image: ./public/images/fighters/subzero/left/stand/8.png
+
+Image: ./public/images/fighters/subzero/left/stand/9.png
+
+Image: ./public/images/fighters/subzero/left/uppercut/0.png
+
+Image: ./public/images/fighters/subzero/left/uppercut/1.png
+
+Image: ./public/images/fighters/subzero/left/uppercut/2.png
+
+Image: ./public/images/fighters/subzero/left/uppercut/3.png
+
+Image: ./public/images/fighters/subzero/left/uppercut/4.png
+
+Image: ./public/images/fighters/subzero/left/walking-backward/0.png
+
+Image: ./public/images/fighters/subzero/left/walking-backward/1.png
+
+Image: ./public/images/fighters/subzero/left/walking-backward/2.png
+
+Image: ./public/images/fighters/subzero/left/walking-backward/3.png
+
+Image: ./public/images/fighters/subzero/left/walking-backward/4.png
+
+Image: ./public/images/fighters/subzero/left/walking-backward/5.png
+
+Image: ./public/images/fighters/subzero/left/walking-backward/6.png
+
+Image: ./public/images/fighters/subzero/left/walking-backward/7.png
+
+Image: ./public/images/fighters/subzero/left/walking-backward/8.png
+
+Image: ./public/images/fighters/subzero/left/walking/0.png
+
+Image: ./public/images/fighters/subzero/left/walking/1.png
+
+Image: ./public/images/fighters/subzero/left/walking/2.png
+
+Image: ./public/images/fighters/subzero/left/walking/3.png
+
+Image: ./public/images/fighters/subzero/left/walking/4.png
+
+Image: ./public/images/fighters/subzero/left/walking/5.png
+
+Image: ./public/images/fighters/subzero/left/walking/6.png
+
+Image: ./public/images/fighters/subzero/left/walking/7.png
+
+Image: ./public/images/fighters/subzero/left/walking/8.png
+
+Image: ./public/images/fighters/subzero/left/win/0.png
+
+Image: ./public/images/fighters/subzero/left/win/1.png
+
+Image: ./public/images/fighters/subzero/left/win/2.png
+
+Image: ./public/images/fighters/subzero/left/win/3.png
+
+Image: ./public/images/fighters/subzero/left/win/4.png
+
+Image: ./public/images/fighters/subzero/left/win/5.png
+
+Image: ./public/images/fighters/subzero/left/win/6.png
+
+Image: ./public/images/fighters/subzero/left/win/7.png
+
+Image: ./public/images/fighters/subzero/left/win/8.png
+
+Image: ./public/images/fighters/subzero/left/win/9.png
+
+Image: ./public/images/fighters/subzero/right/attractive-stand-up/0.png
+
+Image: ./public/images/fighters/subzero/right/attractive-stand-up/1.png
+
+Image: ./public/images/fighters/subzero/right/attractive-stand-up/2.png
+
+Image: ./public/images/fighters/subzero/right/attractive-stand-up/3.png
+
+Image: ./public/images/fighters/subzero/right/attractive-stand-up/4.png
+
+Image: ./public/images/fighters/subzero/right/backward-jump-kick/0.png
+
+Image: ./public/images/fighters/subzero/right/backward-jump-kick/1.png
+
+Image: ./public/images/fighters/subzero/right/backward-jump-kick/2.png
+
+Image: ./public/images/fighters/subzero/right/backward-jump-punch/0.png
+
+Image: ./public/images/fighters/subzero/right/backward-jump-punch/1.png
+
+Image: ./public/images/fighters/subzero/right/backward-jump-punch/2.png
+
+Image: ./public/images/fighters/subzero/right/backward-jump/0.png
+
+Image: ./public/images/fighters/subzero/right/backward-jump/1.png
+
+Image: ./public/images/fighters/subzero/right/backward-jump/2.png
+
+Image: ./public/images/fighters/subzero/right/backward-jump/3.png
+
+Image: ./public/images/fighters/subzero/right/backward-jump/4.png
+
+Image: ./public/images/fighters/subzero/right/backward-jump/5.png
+
+Image: ./public/images/fighters/subzero/right/backward-jump/6.png
+
+Image: ./public/images/fighters/subzero/right/backward-jump/7.png
+
+Image: ./public/images/fighters/subzero/right/blocking/0.png
+
+Image: ./public/images/fighters/subzero/right/blocking/1.png
+
+Image: ./public/images/fighters/subzero/right/blocking/2.png
+
+Image: ./public/images/fighters/subzero/right/endure/0.png
+
+Image: ./public/images/fighters/subzero/right/endure/1.png
+
+Image: ./public/images/fighters/subzero/right/endure/2.png
+
+Image: ./public/images/fighters/subzero/right/fall/0.png
+
+Image: ./public/images/fighters/subzero/right/fall/1.png
+
+Image: ./public/images/fighters/subzero/right/fall/2.png
+
+Image: ./public/images/fighters/subzero/right/fall/3.png
+
+Image: ./public/images/fighters/subzero/right/fall/4.png
+
+Image: ./public/images/fighters/subzero/right/fall/5.png
+
+Image: ./public/images/fighters/subzero/right/fall/6.png
+
+Image: ./public/images/fighters/subzero/right/forward-jump-kick/0.png
+
+Image: ./public/images/fighters/subzero/right/forward-jump-kick/1.png
+
+Image: ./public/images/fighters/subzero/right/forward-jump-kick/2.png
+
+Image: ./public/images/fighters/subzero/right/forward-jump-punch/0.png
+
+Image: ./public/images/fighters/subzero/right/forward-jump-punch/1.png
+
+Image: ./public/images/fighters/subzero/right/forward-jump-punch/2.png
+
+Image: ./public/images/fighters/subzero/right/forward-jump/0.png
+
+Image: ./public/images/fighters/subzero/right/forward-jump/1.png
+
+Image: ./public/images/fighters/subzero/right/forward-jump/2.png
+
+Image: ./public/images/fighters/subzero/right/forward-jump/3.png
+
+Image: ./public/images/fighters/subzero/right/forward-jump/4.png
+
+Image: ./public/images/fighters/subzero/right/forward-jump/5.png
+
+Image: ./public/images/fighters/subzero/right/forward-jump/6.png
+
+Image: ./public/images/fighters/subzero/right/forward-jump/7.png
+
+Image: ./public/images/fighters/subzero/right/high-kick/0.png
+
+Image: ./public/images/fighters/subzero/right/high-kick/1.png
+
+Image: ./public/images/fighters/subzero/right/high-kick/2.png
+
+Image: ./public/images/fighters/subzero/right/high-kick/3.png
+
+Image: ./public/images/fighters/subzero/right/high-kick/4.png
+
+Image: ./public/images/fighters/subzero/right/high-kick/5.png
+
+Image: ./public/images/fighters/subzero/right/high-kick/6.png
+
+Image: ./public/images/fighters/subzero/right/high-punch/0.png
+
+Image: ./public/images/fighters/subzero/right/high-punch/1.png
+
+Image: ./public/images/fighters/subzero/right/high-punch/2.png
+
+Image: ./public/images/fighters/subzero/right/high-punch/3.png
+
+Image: ./public/images/fighters/subzero/right/high-punch/4.png
+
+Image: ./public/images/fighters/subzero/right/high-punch/5.png
+
+Image: ./public/images/fighters/subzero/right/high-punch/6.png
+
+Image: ./public/images/fighters/subzero/right/high-punch/7.png
+
+Image: ./public/images/fighters/subzero/right/jumping/0.png
+
+Image: ./public/images/fighters/subzero/right/jumping/1.png
+
+Image: ./public/images/fighters/subzero/right/jumping/2.png
+
+Image: ./public/images/fighters/subzero/right/jumping/3.png
+
+Image: ./public/images/fighters/subzero/right/jumping/4.png
+
+Image: ./public/images/fighters/subzero/right/jumping/5.png
+
+Image: ./public/images/fighters/subzero/right/knock-down/0.png
+
+Image: ./public/images/fighters/subzero/right/knock-down/1.png
+
+Image: ./public/images/fighters/subzero/right/knock-down/2.png
+
+Image: ./public/images/fighters/subzero/right/knock-down/3.png
+
+Image: ./public/images/fighters/subzero/right/knock-down/4.png
+
+Image: ./public/images/fighters/subzero/right/knock-down/5.png
+
+Image: ./public/images/fighters/subzero/right/knock-down/6.png
+
+Image: ./public/images/fighters/subzero/right/knock-down/7.png
+
+Image: ./public/images/fighters/subzero/right/knock-down/8.png
+
+Image: ./public/images/fighters/subzero/right/knock-down/9.png
+
+Image: ./public/images/fighters/subzero/right/low-kick/0.png
+
+Image: ./public/images/fighters/subzero/right/low-kick/1.png
+
+Image: ./public/images/fighters/subzero/right/low-kick/2.png
+
+Image: ./public/images/fighters/subzero/right/low-kick/3.png
+
+Image: ./public/images/fighters/subzero/right/low-kick/4.png
+
+Image: ./public/images/fighters/subzero/right/low-kick/5.png
+
+Image: ./public/images/fighters/subzero/right/low-punch/0.png
+
+Image: ./public/images/fighters/subzero/right/low-punch/1.png
+
+Image: ./public/images/fighters/subzero/right/low-punch/2.png
+
+Image: ./public/images/fighters/subzero/right/low-punch/3.png
+
+Image: ./public/images/fighters/subzero/right/low-punch/4.png
+
+Image: ./public/images/fighters/subzero/right/spin-kick/0.png
+
+Image: ./public/images/fighters/subzero/right/spin-kick/1.png
+
+Image: ./public/images/fighters/subzero/right/spin-kick/2.png
+
+Image: ./public/images/fighters/subzero/right/spin-kick/3.png
+
+Image: ./public/images/fighters/subzero/right/spin-kick/4.png
+
+Image: ./public/images/fighters/subzero/right/spin-kick/5.png
+
+Image: ./public/images/fighters/subzero/right/spin-kick/6.png
+
+Image: ./public/images/fighters/subzero/right/spin-kick/7.png
+
+Image: ./public/images/fighters/subzero/right/squat-endure/0.png
+
+Image: ./public/images/fighters/subzero/right/squat-endure/1.png
+
+Image: ./public/images/fighters/subzero/right/squat-endure/2.png
+
+Image: ./public/images/fighters/subzero/right/squat-high-kick/0.png
+
+Image: ./public/images/fighters/subzero/right/squat-high-kick/1.png
+
+Image: ./public/images/fighters/subzero/right/squat-high-kick/2.png
+
+Image: ./public/images/fighters/subzero/right/squat-high-kick/3.png
+
+Image: ./public/images/fighters/subzero/right/squat-low-kick/0.png
+
+Image: ./public/images/fighters/subzero/right/squat-low-kick/1.png
+
+Image: ./public/images/fighters/subzero/right/squat-low-kick/2.png
+
+Image: ./public/images/fighters/subzero/right/squat-low-punch/0.png
+
+Image: ./public/images/fighters/subzero/right/squat-low-punch/1.png
+
+Image: ./public/images/fighters/subzero/right/squat-low-punch/2.png
+
+Image: ./public/images/fighters/subzero/right/squating/0.png
+
+Image: ./public/images/fighters/subzero/right/squating/1.png
+
+Image: ./public/images/fighters/subzero/right/squating/2.png
+
+Image: ./public/images/fighters/subzero/right/stand-up/0.png
+
+Image: ./public/images/fighters/subzero/right/stand-up/1.png
+
+Image: ./public/images/fighters/subzero/right/stand-up/2.png
+
+Image: ./public/images/fighters/subzero/right/stand/0.png
+
+Image: ./public/images/fighters/subzero/right/stand/1.png
+
+Image: ./public/images/fighters/subzero/right/stand/2.png
+
+Image: ./public/images/fighters/subzero/right/stand/3.png
+
+Image: ./public/images/fighters/subzero/right/stand/4.png
+
+Image: ./public/images/fighters/subzero/right/stand/5.png
+
+Image: ./public/images/fighters/subzero/right/stand/6.png
+
+Image: ./public/images/fighters/subzero/right/stand/7.png
+
+Image: ./public/images/fighters/subzero/right/stand/8.png
+
+Image: ./public/images/fighters/subzero/right/uppercut/0.png
+
+Image: ./public/images/fighters/subzero/right/uppercut/1.png
+
+Image: ./public/images/fighters/subzero/right/uppercut/2.png
+
+Image: ./public/images/fighters/subzero/right/uppercut/3.png
+
+Image: ./public/images/fighters/subzero/right/uppercut/4.png
+
+Image: ./public/images/fighters/subzero/right/walking-backward/0.png
+
+Image: ./public/images/fighters/subzero/right/walking-backward/1.png
+
+Image: ./public/images/fighters/subzero/right/walking-backward/2.png
+
+Image: ./public/images/fighters/subzero/right/walking-backward/3.png
+
+Image: ./public/images/fighters/subzero/right/walking-backward/4.png
+
+Image: ./public/images/fighters/subzero/right/walking-backward/5.png
+
+Image: ./public/images/fighters/subzero/right/walking-backward/6.png
+
+Image: ./public/images/fighters/subzero/right/walking-backward/7.png
+
+Image: ./public/images/fighters/subzero/right/walking-backward/8.png
+
+Image: ./public/images/fighters/subzero/right/walking-backward/subzero-walking-f.gif
+
+Image: ./public/images/fighters/subzero/right/walking/0.png
+
+Image: ./public/images/fighters/subzero/right/walking/1.png
+
+Image: ./public/images/fighters/subzero/right/walking/2.png
+
+Image: ./public/images/fighters/subzero/right/walking/3.png
+
+Image: ./public/images/fighters/subzero/right/walking/4.png
+
+Image: ./public/images/fighters/subzero/right/walking/5.png
+
+Image: ./public/images/fighters/subzero/right/walking/6.png
+
+Image: ./public/images/fighters/subzero/right/walking/7.png
+
+Image: ./public/images/fighters/subzero/right/walking/8.png
+
+Image: ./public/images/fighters/subzero/right/walking/subzero-walking-b.gif
+
+Image: ./public/images/fighters/subzero/right/win/0.png
+
+Image: ./public/images/fighters/subzero/right/win/1.png
+
+Image: ./public/images/fighters/subzero/right/win/2.png
+
+Image: ./public/images/fighters/subzero/right/win/3.png
+
+Image: ./public/images/fighters/subzero/right/win/4.png
+
+Image: ./public/images/fighters/subzero/right/win/5.png
+
+Image: ./public/images/fighters/subzero/right/win/6.png
+
+Image: ./public/images/fighters/subzero/right/win/7.png
+
+Image: ./public/images/fighters/subzero/right/win/8.png
+
+Image: ./public/images/fighters/subzero/right/win/9.png
+
+===== START ./public/index.html =====
+<!DOCTYPE html>
+<html>
+<head>
+    <title>mk.js</title>
+    <script src="src/movement.js"></script>
+    <script src="src/mk.js"></script>
+    <link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+    <table>
+    <thead>
+        <th>
+            Arena
+        </th>
+        <th>
+            Webcam
+        </th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <div id="parent">
+                    <div id="utils">
+                        <div id="player1Name" class="playerName">Sub-Zero</div>
+                        <div id="player1LifeBar" class="lifebar"><div class="life" id="player1Life"></div></div>
+                        <div id="player2Name" class="playerName">Kano</div>
+                        <div id="player2LifeBar" class="lifebar"><div class="life" id="player2Life"></div></div>
+                    </div>
+                    <div id="arena">
+                    </div>
+                    <div id="loading">
+                        <span class="loadingLabel">Loading...</span>
+                    </div>
+                </div>
+            </td>
+            <td id="webcam-parent">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h1>Instructions</h1>
+                <p>
+                    <ul class="instructions-list">
+                        <li>For playing with gesture recognition you need Google Chrome 22+ or Firefox 19+.</li>
+                        <li>Choose proper place to position your computer. I recommend you to use white wall as background and dark clothes for best contrast.</li>
+                        <li>Stay outside the scope of the webcam. It needs to capture the background behind you at first place.</li>
+                        <li>Allow to the web page to use your webcam.</li>
+                        <li>If the webcam canvas is black then you can start playing otherwise restart and try again.</li>
+                        <li>Stay in about 2.5 meters away from your computer in the middle of the view zone.</li>
+                        <li>For walking left stay in the left side of the webcam view region and right if you want to walk right. If you want to stop just go back in the middle.</li>
+                        <li>Raise your left or right arm to punch.</li>
+                        <li>Raise your left or right leg to kick.</li>
+                        <li>Squat and your fighter will squat too.</li>
+                        <li>Squat and punch for squat low punch attack.</li>
+                        <li>Enjoy!</li>
+                    </ul>
+                </p>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+    <div class="manual">
+    </div>
+    <script>
+        (function () {
+
+            function $(id) {
+                return document.getElementById(id);
+            }
+
+            function setLife(container, life) {
+                container.style.width = life + '%';
+            }
+
+            document.onkeydown = function (e) {
+                if (e.keyCode === 32) {
+                    window.location.reload();
+                }
+            };
+
+            (function () {
+                
+                var startGame = function () {
+                    $('loading').style.visibility = 'hidden';
+                    $('arena').style.visibility = 'visible';
+                    $('utils').style.visibility = 'visible';
+                };
+                
+                var options = {
+                    arena: {
+                        container: document.getElementById('arena'),
+                        arena: mk.arenas.types.THRONE_ROOM
+                    },
+                    fighters: [{ name: 'Subzero' }, { name: 'Kano' }],
+                    callbacks: {
+                        attack: function (f, o, l) {
+                            if (o.getName() === 'kano') {
+                                setLife($('player2Life'), o.getLife());
+                            } else {
+                                setLife($('player1Life'), o.getLife());
+                            }
+                        }
+
+                    },
+                    gameType: 'multiplayer'
+                  };
+
+                function startNewGame() {
+                    mk.start(options).ready(function () {
+                        startGame();
+                    });
+                }
+                
+                startNewGame();
+                
+            }());
+
+        }());
+    </script>
+</body>
+</html>
+===== END ./public/index.html =====
+
+===== START ./public/src/mk.js =====
+;(function () {
+
+  var mk = {};
+
+  mk.callbacks = {
+    ATTACK  : 'attack',
+    GAME_END: 'game-end'
+  };
+
+  mk.config = {
+    IMAGES       : 'images/',
+    ARENAS       : 'arenas/',
+    FIGHTERS     : 'fighters/',
+    STEP_DURATION: 80,
+    PLAYER_TOP   : 230,
+    BLOCK_DAMAGE : 0.2
+  };
+
+  mk.controllers = {};
+
+  mk.controllers.Base = function (options) {
+    if (!options)
+      return;
+
+    this._callbacks = options.callbacks || {};
+
+    this._initializeFighters(options.fighters);
+
+    var a = options.arena;
+    this.arena = new mk.arenas.Arena({
+      fighters: this.fighters,
+      arena: a.arena,
+      width: a.width,
+      height: a.height,
+      container: a.container,
+      game: this
+    });
+  };
+
+  mk.reset = function () {
+    var game = this.game;
+    if (typeof game.reset === 'function')
+        game.reset();
+    game.fighters.forEach(function (f) {
+      f.getMove().stop();
+    });
+    game.fighters = null;
+    game._opponents = null;
+    game.arena.destroy();
+    game.arena = null;
+    game._callbacks = null;
+    this.game = null;
+  };
+
+  mk.controllers.Base.prototype._initializeFighters = function (fighters) {
+    var current;
+
+    this.fighters = [];
+    this._opponents = {};
+
+    for (var i = 0; i < fighters.length; i += 1) {
+      current = fighters[i];
+      var orientation = (i === 0) ?
+                mk.fighters.orientations.LEFT :
+                mk.fighters.orientations.RIGHT;
+      this.fighters.push(new mk.fighters.Fighter({
+        name: current.name,
+        arena: this.arena,
+        orientation: orientation,
+        game: this
+      }));
+    }
+    this._opponents[this.fighters[0].getName()] = this.fighters[1];
+    this._opponents[this.fighters[1].getName()] = this.fighters[0];
+  };
+
+  mk.controllers.Base.prototype.getOpponent = function (f) {
+    return this._opponents[f.getName(name)];
+  };
+
+  mk.controllers.Base.prototype.init = function (promise) {
+    var current = 0,
+      total = this.fighters.length,
+      self = this,
+      f;
+    for (var i = 0; i < this.fighters.length; i += 1) {
+      f = this.fighters[i];
+      (function (f) {
+        f.init(function () {
+          f.setMove(mk.moves.types.STAND);
+          current += 1;
+          if (current === total) {
+            self.arena.init();
+            self._setFighersArena();
+            self._initialize();
+            promise._initialized();
+          }
+        });
+      }(f));
+    }
+  };
+
+  mk.controllers.Base.prototype._initialize = function () {
+    throw '_initialize is not implemented for this controller!';
+  };
+
+  mk.controllers.Base.prototype._setFighersArena = function () {
+    var f;
+    for (var i = 0; i < this.fighters.length; i += 1) {
+      f = this.fighters[i];
+      f.setArena(this.arena);
+    }
+    f.setX(470);  //testing
+  };
+
+  mk.controllers.Base.prototype.fighterAttacked = function (fighter, damage) {
+    var opponent = this.getOpponent(fighter),
+      opponentLife = opponent.getLife(),
+      callback = this._callbacks[mk.callbacks.ATTACK];
+    if (this._requiredDistance(fighter, opponent) &&
+      this._attackCompatible(fighter.getMove().type, opponent.getMove().type)) {
+      opponent.endureAttack(damage, fighter.getMove().type);
+      if (typeof callback === 'function') {
+        callback.call(null, fighter, opponent, opponentLife - opponent.getLife());
+      }
+    }
+  };
+
+  mk.controllers.Base.prototype._attackCompatible = function (attack, opponentStand) {
+    var m = mk.moves.types;
+    if (opponentStand === m.SQUAT) {
+      if (attack !== m.LOW_PUNCH && attack !== m.LOW_KICK) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  /**
+   * Checks wheter the attacker is in the required distance to his opponent
+   *
+   * @private
+   * @param {Fighter} attacker The fighter who attacks
+   * @param {Fighter} opponent The fighter who will endure the attack
+   * @return {boolean} true/false depending on the distance between the fighters
+   */
+  mk.controllers.Base.prototype._requiredDistance = function (attacker, opponent) {
+    var fMiddle = attacker.getX() + attacker.getWidth() / 2,
+      oMiddle = opponent.getX() + opponent.getWidth() / 2,
+      distance = Math.abs(fMiddle - oMiddle),
+      m = mk.moves.types,
+      type = attacker.getMove().type,
+      width = opponent.getWidth();
+    if (distance <= width) {
+      return true;
+    }
+    if (type === m.UPPERCUT &&
+      distance <= width * 1.2) {
+      return true;
+    }
+    if ((type === m.BACKWARD_JUMP_KICK ||
+      type === m.FORWARD_JUMP_KICK ||
+      type === m.FORWARD_JUMP_PUNCH ||
+      type === m.BACKWARD_JUMP_PUNCH) &&
+      distance <= width * 1.5) {
+      return true;
+    }
+    return false;
+  };
+
+  mk.controllers.Base.prototype.fighterDead = function (fighter) {
+    var opponent = this.getOpponent(fighter),
+      callback = this._callbacks[mk.callbacks.GAME_END];
+    opponent.getMove().stop();
+    opponent.setMove(mk.moves.types.WIN);
+    if (typeof callback === 'function') {
+      callback.call(null, fighter);
+    }
+  };
+
+  mk.controllers.keys = {
+    RIGHT: 39,
+    LEFT : 37,
+    UP   : 38,
+    DOWN : 40,
+    BLOCK: 16,
+    HP   : 65,
+    LP   : 83,
+    LK   : 68,
+    HK   : 70
+  };
+
+  mk.controllers.Basic = function (options) {
+    mk.controllers.Base.call(this, options);
+  };
+
+  mk.controllers.Basic.prototype = new mk.controllers.Base();
+
+  mk.controllers.Basic.prototype._initialize = function () {
+    this._player = 0;
+    this._addHandlers();
+  };
+
+  mk.controllers.Basic.prototype._addHandlers = function () {
+    var pressed = {},
+      self = this,
+      f = this.fighters[this._player];
+    document.addEventListener('keydown', function (e) {
+      pressed[e.keyCode] = true;
+      var move = self._getMove(pressed, mk.controllers.keys, self._player);
+      self._moveFighter(f, move);
+    }, false);
+    document.addEventListener('keyup', function (e) {
+      delete pressed[e.keyCode];
+      var move = self._getMove(pressed, mk.controllers.keys, self._player);
+      self._moveFighter(f, move);
+    }, false);
+  };
+
+  mk.controllers.Basic.prototype._moveFighter = function (f, m) {
+    if (m) {
+      f.setMove(m);
+    }
+  };
+
+  mk.controllers.Basic.prototype._getMove = function (pressed, k, p) {
+    var m = mk.moves.types,
+      f = this.fighters[p],
+      leftOrient = mk.fighters.orientations.LEFT,
+      rightOrient = mk.fighters.orientations.RIGHT,
+      orient = f.getOrientation(),
+      self = this;
+
+    if (f.getMove().type === m.SQUAT && !pressed[k.DOWN]) {
+      return m.STAND_UP;
+    }
+    if (f.getMove().type === m.BLOCK && !pressed[k.BLOCK]) {
+      return m.STAND;
+    }
+    if (Object.keys(pressed).length === 0) {
+      return m.STAND;
+    }
+    if (pressed[k.BLOCK]) {
+      return m.BLOCK;
+    } else if (pressed[k.LEFT]) {
+      if (pressed[k.UP]) {
+        return m.BACKWARD_JUMP;
+      } else if (pressed[k.HK] && orient === leftOrient) {
+        return m.SPIN_KICK;
+      }
+      return m.WALK_BACKWARD;
+    } else if (pressed[k.RIGHT]) {
+      if (pressed[k.UP]) {
+        return m.FORWARD_JUMP;
+      } else if (pressed[k.HK] && orient === rightOrient) {
+        return m.SPIN_KICK;
+      }
+      return m.WALK;
+    } else if (pressed[k.DOWN]) {
+      if (pressed[k.HP]) {
+        return m.UPPERCUT;
+      } else if (pressed[k.LK]) {
+        return m.SQUAT_LOW_KICK;
+      } else if (pressed[k.HK]) {
+        return m.SQUAT_HIGH_KICK;
+      } else if (pressed[k.LP]) {
+        return m.SQUAT_LOW_PUNCH;
+      }
+      return m.SQUAT;
+    } else if (pressed[k.HK]) {
+      if (f.getMove().type === m.FORWARD_JUMP) {
+        return m.FORWARD_JUMP_KICK;
+      } else if (f.getMove().type === m.BACKWARD_JUMP) {
+        return m.BACKWARD_JUMP_KICK;
+      }
+      return m.HIGH_KICK;
+    } else if (pressed[k.UP]) {
+      return m.JUMP;
+    } else if (pressed[k.LK]) {
+      if (f.getMove().type === m.FORWARD_JUMP) {
+        return m.FORWARD_JUMP_KICK;
+      } else if (f.getMove().type === m.BACKWARD_JUMP) {
+        return m.BACKWARD_JUMP_KICK;
+      }
+      return m.LOW_KICK;
+    } else if (pressed[k.LP]) {
+      if (f.getMove().type === m.FORWARD_JUMP) {
+        return m.FORWARD_JUMP_PUNCH;
+      } else if (f.getMove().type === m.BACKWARD_JUMP) {
+        return m.BACKWARD_JUMP_PUNCH;
+      }
+      return m.LOW_PUNCH;
+    } else if (pressed[k.HP]) {
+      if (f.getMove().type === m.FORWARD_JUMP) {
+        return m.FORWARD_JUMP_PUNCH;
+      } else if (f.getMove().type === m.BACKWARD_JUMP) {
+        return m.BACKWARD_JUMP_PUNCH;
+      }
+      return m.HIGH_PUNCH;
+    }
+  };
+
+  mk.controllers.WebcamInput = function (options) {
+    mk.controllers.Basic.call(this, options);
+  };
+
+  mk.controllers.WebcamInput.prototype = new mk.controllers.Basic();
+
+  mk.controllers.WebcamInput.prototype._initialize = function () {
+    this._player = 1;
+    this._addHandlers();
+    this._addMovementHandlers();
+  };
+
+  mk.controllers.WebcamInput.prototype._addMovementHandlers = function () {
+    if (Movement === undefined) {
+      throw 'The WebcamInput requires movement.js';
+    }
+    var self = this,
+      f = this.fighters[0];
+    Movement.init({
+      movementChanged: function (m) {
+        var move = self._getMoveByMovement(m);
+        self._moveFighter(f, move);
+      },
+      positionChanged: function (p) {
+        var move = self._getMoveByMovement(p);
+        self._moveFighter(f, move);
+      }
+    });
+  };
+
+  mk.controllers.WebcamInput.prototype._moveFighter = function (f, m) {
+    if (m) {
+      if (f.getMove().type === mk.moves.types.SQUAT &&
+        m === mk.moves.types.STAND) {
+        f.setMove(mk.moves.types.STAND_UP);
+      } else {
+        f.setMove(m);
+      }
+    }
+  };
+
+  mk.controllers.WebcamInput.prototype._getMoveByMovement = function (move) {
+    var mkMoves = mk.moves.types,
+      pos = Movement.positions,
+      m = Movement.movements,
+      current = this.fighters[this._player].getMove().type;
+    if (move === pos.LEFT) {
+      return mkMoves.WALK_BACKWARD;
+    } else if (move === pos.RIGHT) {
+      return mkMoves.WALK;
+    } else if (move === pos.MIDDLE) {
+      return mkMoves.STAND;
+    } else if (move === m.STAND) {
+      return mkMoves.STAND;
+    } else if (move === m.SQUAT) {
+      return mkMoves.SQUAT;
+    } else if (move === m.LEFT_ARM_UP ||
+           move === m.RIGHT_ARM_UP) {
+      return mkMoves.HIGH_PUNCH;
+    } else if (move === m.LEFT_LEG_UP ||
+           move === m.RIGHT_LEG_UP) {
+      return mkMoves.LOW_KICK;
+    } else if (move === m.SQUAT_LEFT_ARM_UP ||
+           move === m.SQUAT_RIGHT_ARM_UP) {
+      return mkMoves.SQUAT_LOW_PUNCH;
+    }
+    return mkMoves.STAND;
+  };
+
+  mk.controllers.keys.p1 = {
+    RIGHT: 74,
+    LEFT : 71,
+    UP   : 89,
+    DOWN : 72,
+    BLOCK: 16,
+    HP   : 65,
+    LP   : 83,
+    LK   : 68,
+    HK   : 70
+  };
+
+  mk.controllers.keys.p2 = {
+    RIGHT: 39,
+    LEFT : 37,
+    UP   : 38,
+    DOWN : 40,
+    BLOCK: 17,
+    HP   : 80,
+    LP   : 219,
+    LK   : 221,
+    HK   : 220
+  };
+
+  mk.controllers.Multiplayer = function (options) {
+    mk.controllers.Basic.call(this, options);
+  };
+
+  mk.controllers.Multiplayer.prototype = new mk.controllers.Basic();
+
+  mk.controllers.Multiplayer.prototype._initialize = function () {
+    this._addHandlers();
+  };
+
+  mk.controllers.Multiplayer.prototype._addHandlers = function () {
+    var pressed = {},
+      self = this,
+      f1 = this.fighters[0],
+      f2 = this.fighters[1];
+
+    document.addEventListener('keydown', function (e) {
+      pressed[e.keyCode] = true;
+      var move = self._getMove(pressed, mk.controllers.keys.p1, 0);
+      self._moveFighter(f1, move);
+      move = self._getMove(pressed, mk.controllers.keys.p2, 1);
+      self._moveFighter(f2, move);
+    }, false);
+
+    document.addEventListener('keyup', function (e) {
+      delete pressed[e.keyCode];
+      var move = self._getMove(pressed, mk.controllers.keys.p1, 0);
+      self._moveFighter(f1, move);
+      move = self._getMove(pressed, mk.controllers.keys.p2, 1);
+      self._moveFighter(f2, move);
+    }, false);
+  };
+
+  mk.controllers.Multiplayer.prototype._moveFighter = function (fighter, move) {
+    if (move) {
+      fighter.setMove(move);
+    }
+  };
+
+  mk.controllers.Network = function (options) {
+    mk.controllers.Basic.call(this, options);
+    this._isHost = options.isHost;
+    this._gameName = options.gameName;
+    this._transport = options.transport || this.Transports.socketio;
+  };
+
+  mk.callbacks.PLAYER_CONNECTED = 'player-connected';
+
+  mk.controllers.Network.prototype = new mk.controllers.Basic();
+
+  mk.controllers.Network.prototype.Requests = {
+    CREATE_GAME: 'create-game',
+    JOIN_GAME  : 'join-game'
+  };
+
+  mk.controllers.Network.prototype.Responses = {
+    SUCCESS        : 0,
+    GAME_EXISTS    : 1,
+    GAME_NOT_EXISTS: 2,
+    GAME_FULL      : 3
+  };
+
+  mk.controllers.Network.prototype.Messages = {
+    EVENT           : 'event',
+    LIFE_UPDATE     : 'life-update',
+    POSITION_UPDATE : 'position-update',
+    PLAYER_CONNECTED: 'player-connected'
+  };
+
+  mk.controllers.Network.prototype.Transports = {
+    socketio: {}
+  };
+
+  mk.controllers.Network.prototype.Transports.socketio.init = function() {
+    this._socket = io.connect();
+  };
+
+  mk.controllers.Network.prototype.Transports.socketio.emit = function() {
+    this._socket.emit.apply(this._socket, arguments);
+  };
+
+  mk.controllers.Network.prototype.Transports.socketio.on = function() {
+    this._socket.on.apply(this._socket, arguments);
+  };
+
+  mk.controllers.Network.prototype._createGame = function (game) {
+    this._transport.emit(this.Requests.CREATE_GAME, this._gameName);
+    this._addSocketHandlers();
+  };
+
+  mk.controllers.Network.prototype._addSocketHandlers = function () {
+    var opponent = this.fighters[+!this._player],
+      f = this.fighters[this._player],
+      m = this.Messages,
+      self = this;
+    this._transport.on(m.EVENT, function (move) {
+      opponent.setMove(move);
+    });
+    this._transport.on(m.LIFE_UPDATE, function (data) {
+      opponent.setLife(data);
+    });
+    this._transport.on(m.POSITION_UPDATE, function (data) {
+      opponent.setX(data.x);
+      opponent.setY(data.y);
+    });
+    setInterval(function () {
+      self._transport.emit(m.LIFE_UPDATE, f.getLife());
+    }, 2000);
+    setInterval(function () {
+      if (!f.isJumping()) {
+        self._transport.emit(m.POSITION_UPDATE, {
+          x: f.getX(),
+          y: f.getY()
+        });
+      }
+    }, 500);
+    if (this._isHost) {
+      this._transport.on(this.Messages.PLAYER_CONNECTED, function (data) {
+        var c = self._callbacks[mk.callbacks.PLAYER_CONNECTED];
+        if (typeof c  === 'function') {
+          c();
+        }
+      });
+    }
+  };
+
+  mk.controllers.Network.prototype._moveFighter = function (f, m) {
+    if (m) {
+      this._transport.emit('event', m);
+      f.setMove(m);
+    }
+  };
+
+  mk.controllers.Network.prototype._joinGame = function (game) {
+    this._transport.emit(this.Requests.JOIN_GAME, this._gameName);
+    this._addSocketHandlers();
+  };
+
+  mk.controllers.Network.prototype._initialize = function () {
+    var self = this;
+    if (this._isHost) {
+      this._player = 1;
+    } else {
+      this._player = 0;
+    }
+    this._addHandlers();
+    this._transport.init();
+    this._transport.on('connect', function () {
+      if (self._isHost) {
+        self._createGame(self._gameName);
+      } else {
+        self._joinGame(self._gameName);
+      }
+    });
+    this._transport.on('response', function (response) {
+      if (response !== self.Responses.SUCCESS) {
+        alert('Error while connecting to the server.');
+      }
+    });
+    this._transport.on('disconnect', function () {
+      alert('Disconnected from the server.');
+    });
+  };
+
+  mk.start = function (options) {
+    var type = options.gameType || 'basic',
+      promise = new mk.Promise();
+    type = type.toLowerCase();
+    switch (type) {
+      case 'basic':
+        mk.game = new mk.controllers.Basic(options);
+        break;
+      case 'network':
+        mk.game = new mk.controllers.Network(options);
+        break;
+      case 'multiplayer':
+        mk.game = new mk.controllers.Multiplayer(options);
+        break;
+      case 'webcaminput':
+        mk.game = new mk.controllers.WebcamInput(options);
+        break;
+      default:
+        mk.game = new mk.controllers.Basic(options);
+    }
+    mk.game.init(promise);
+    return promise;
+  };
+
+  mk.Promise = function () {
+    this.callbacks = [];
+  };
+
+  mk.Promise.prototype._initialized = function () {
+    this.callbacks.forEach(function (c) {
+      if (typeof c === 'function') {
+        c();
+      }
+    });
+  };
+
+  mk.Promise.prototype.ready = function (callback) {
+    this.callbacks.push(callback);
+  };
+
+
+  mk.arenas = {
+    types: {
+      TOWER      : 0,
+      THRONE_ROOM: 1
+    }
+  };
+
+  mk.arenas.Arena = function (options) {
+    this.width = options.width || 600;
+    this.height = options.height || 400;
+    this.arena = options.arena || mk.arenas.types.TOWER;
+    this.fighters = options.fighters;
+    this._container = options.container;
+    this._game = options.game;
+  };
+
+  mk.arenas.Arena.prototype.init = function () {
+    var canvas = document.createElement('canvas');
+    canvas.width = this.width;
+    canvas.height = this.height;
+    this._container.appendChild(canvas);
+    this._context = canvas.getContext('2d');
+    this._canvas = canvas;
+    this.refresh();
+  };
+
+  mk.arenas.Arena.prototype.destroy = function () {
+    this._container.removeChild(this._canvas);
+    this._canvas = undefined;
+    this._context = undefined;
+    this._container = undefined;
+    this._game = undefined;
+    this.fighters = undefined;
+    this.arena = undefined;
+  };
+
+  mk.arenas.Arena.prototype._drawArena = function () {
+    var img = document.createElement('img'),
+      conf = mk.config,
+      self = this;
+    if (this.texture) {
+      this._context.drawImage(this.texture, 0, 0, this.width, this.height);
+    } else {
+      img.src = conf.IMAGES + conf.ARENAS + this.arena + '/arena.png';
+      img.width = this.width;
+      img.height = this.height;
+      img.onload = function () {
+        self.texture = img;
+        self._context.drawImage(img, 0, 0, self.width, self.height);
+      };
+    }
+  };
+
+  mk.arenas.Arena.prototype.refresh = function () {
+    this._drawArena();
+    var f;
+    for (var i = 0; i < this.fighters.length; i += 1) {
+      f = this.fighters[i];
+      this._context.drawImage(f.getState(), f.getX(), f.getY());
+    }
+  };
+
+  mk.arenas.Arena.prototype.moveFighter = function (fighter, pos) {
+    var opponent = this._game.getOpponent(fighter),
+      op = { x: opponent.getX(), y: opponent.getY() },
+      isOver = pos.y + fighter.getVisibleHeight() <= op.y;
+
+    if (pos.x <= 0) {
+      pos.x = 0;
+    }
+    if (pos.x >= this.width - fighter.getVisibleWidth()) {
+      pos.x = this.width - fighter.getVisibleWidth();
+    }
+
+    if (!isOver) {
+      if (fighter.getOrientation() === mk.fighters.orientations.LEFT) {
+        if (pos.x + fighter.getVisibleWidth() > op.x) {
+          pos = this._synchronizeFighters(pos, fighter, opponent);
+        }
+      } else {
+        if (pos.x < op.x + opponent.getVisibleWidth()) {
+          pos = this._synchronizeFighters(pos, fighter, opponent);
+        }
+      }
+    }
+
+    this._setFightersOrientation(fighter, opponent);
+    return pos;
+  };
+
+  mk.arenas.Arena.prototype._synchronizeFighters = function (pos, fighter, opponent) {
+    if (fighter.getMove().type === mk.moves.types.FORWARD_JUMP ||
+      fighter.getMove().type === mk.moves.types.BACKWARD_JUMP) {
+      pos.x = fighter.getX();
+      return pos;
+    }
+    var diff;
+    if (fighter.getOrientation() === mk.fighters.orientations.LEFT) {
+      diff = Math.min(this.width -
+              (opponent.getX() + opponent.getVisibleWidth() +
+              fighter.getVisibleWidth()),
+              pos.x - fighter.getX());
+
+      pos.x = fighter.getX() + diff;
+      if (diff > 0) {
+        opponent.setX(opponent.getX() + diff);
+      }
+    } else {
+      diff = Math.min(opponent.getX(), fighter.getX() - pos.x);
+      if (diff > 0) {
+        pos.x = fighter.getX() - diff;
+        opponent.setX(opponent.getX() - diff);
+        if (opponent.getX() + opponent.getWidth() > pos.x) {
+          pos.x = opponent.getX() + opponent.getVisibleWidth();
+        }
+      } else {
+        pos.x = fighter.getX();
+        if (opponent.getX() + opponent.getWidth() > pos.x) {
+          pos.x = opponent.getX() + opponent.getVisibleWidth();
+        }
+      }
+    }
+    return pos;
+  };
+
+  mk.arenas.Arena.prototype._setFightersOrientation = function (f1, f2) {
+    if (f1.getX() < f2.getX()) {
+      f1.setOrientation(mk.fighters.orientations.LEFT);
+      f2.setOrientation(mk.fighters.orientations.RIGHT);
+    } else {
+      f1.setOrientation(mk.fighters.orientations.RIGHT);
+      f2.setOrientation(mk.fighters.orientations.LEFT);
+    }
+  };
+
+
+/* * * * * * * * * * * * * * * * Definition of all movements * * * * * * * * * * * * * * * */
+
+  mk.moves = {};
+
+  mk.moves.types = {
+    STAND              : 'stand',
+    WALK               : 'walking',
+    WALK_BACKWARD      : 'walking-backward',
+    SQUAT              : 'squating',
+    STAND_UP           : 'stand-up',
+    HIGH_KICK          : 'high-kick',
+    JUMP               : 'jumping',
+    FORWARD_JUMP       : 'forward-jump',
+    BACKWARD_JUMP      : 'backward-jump',
+    LOW_KICK           : 'low-kick',
+    LOW_PUNCH          : 'low-punch',
+    HIGH_PUNCH         : 'high-punch',
+    FALL               : 'fall',
+    WIN                : 'win',
+    ENDURE             : 'endure',
+    SQUAT_ENDURE       : 'squat-endure',
+    UPPERCUT           : 'uppercut',
+    SQUAT_LOW_KICK     : 'squat-low-kick',
+    SQUAT_HIGH_KICK    : 'squat-high-kick',
+    SQUAT_LOW_PUNCH    : 'squat-low-punch',
+    KNOCK_DOWN         : 'knock-down',
+    ATTRACTIVE_STAND_UP: 'attractive-stand-up',
+    SPIN_KICK          : 'spin-kick',
+    BLOCK              : 'blocking',
+    FORWARD_JUMP_KICK  : 'forward-jump-kick',
+    BACKWARD_JUMP_KICK : 'backward-jump-kick',
+    BACKWARD_JUMP_PUNCH: 'backward-jump-punch',
+    FORWARD_JUMP_PUNCH : 'forward-jump-punch'
+  };
+
+  /**
+   * Base constructor for all movements
+   *
+   * @constructor
+   * @param {Fighter} owner Owner of the movement
+   * @param {string} type Type of the movement
+   * @param {number} stepDuration Duration between the movements steps
+   */
+  mk.moves.Move = function (owner, type, stepDuration) {
+    this.owner = owner;
+    this.type = type;
+    this._stepDuration = stepDuration || 80;
+    this._interval = -1;
+    this._currentStep = 0;
+    this._actionPending = [];
+  };
+
+  mk.moves.Move.prototype.go = function (step) {
+    var self = this;
+    if (typeof this._beforeGo === 'function')
+      this._beforeGo();
+    this._currentStep = step || 0;
+    this._nextStep(this._action);
+    this._interval = setInterval(function () {
+      self._nextStep(self._action);
+    }, this._stepDuration);
+  };
+
+  mk.moves.Move.prototype._action = function () {};
+
+  mk.moves.Move.prototype._nextStep = function (callback) {
+    var img = document.createElement('img'),
+      conf = mk.config;
+
+    img = this._steps[this.owner.getOrientation()][this._currentStep];
+    this.owner.setState(img);
+    callback.apply(this);
+    this.owner.refresh();
+    this._moveNextStep();
+  };
+
+  mk.moves.Move.prototype.init = function (callback) {
+    var loaded = 0,
+      self = this,
+      img, o = mk.fighters.orientations;
+    this._steps = {};
+    this._steps[o.RIGHT] = [];
+    this._steps[o.LEFT] = [];
+    for (var i = 0; i < this._totalSteps; i += 1) {
+      for (var orientation in o) {
+        img = document.createElement('img');
+        img.onload = function () {
+          loaded += 1;
+          if (loaded === self._totalSteps * 2) {
+            callback.apply(self);
+          }
+        };
+        img.src = this._getImageUrl(i, o[orientation]);
+        this._steps[o[orientation]].push(img);
+      }
+    }
+    if (typeof this.addHandlers === 'function') {
+      this.addHandlers();
+    }
+  };
+
+  mk.moves.Move.prototype._getImageUrl = function (id, ownerOrientation) {
+    var conf = mk.config;
+    return conf.IMAGES +
+         conf.FIGHTERS +
+         this.owner.getName() + '/' +
+         ownerOrientation + '/' +
+         this.type + '/' +
+         id + '.png';
+  };
+
+  mk.moves.Move.prototype.stop = function (callback) {
+
+    if (typeof this._beforeStop === 'function')
+      this._beforeStop();
+
+    clearInterval(this._interval);
+
+    if (typeof this._actionPending === 'function') {
+      var func = this._actionPending;
+      this._actionPending = null;
+      func();
+    }
+
+    this._shouldStop = false;
+  };
+
+  mk.moves.CycleMove = function (options) {
+    options = options || {};
+    mk.moves.Move.call(this, options.owner, options.type, options.duration);
+    this._totalSteps = options.steps;
+  };
+
+  mk.moves.CycleMove.prototype = new mk.moves.Move();
+
+  mk.moves.CycleMove.prototype._moveNextStep = function () {
+    this._currentStep += 1;
+    this._currentStep = this._currentStep % this._totalSteps;
+  };
+
+  mk.moves.Stand = function (owner) {
+    mk.moves.CycleMove.call(this, {
+      owner: owner,
+      type: mk.moves.types.STAND,
+      steps: 9
+    });
+  };
+
+  mk.moves.Stand.prototype = new mk.moves.CycleMove();
+
+  mk.moves.Stand.prototype._beforeGo = function () {
+    this.owner.setY(mk.config.PLAYER_TOP);
+  };
+
+  mk.moves.Walk = function (owner) {
+    mk.moves.CycleMove.call(this, {
+      owner: owner,
+      type: mk.moves.types.WALK,
+      steps: 9
+    });
+  };
+
+  mk.moves.Walk.prototype = new mk.moves.CycleMove();
+
+  mk.moves.Walk.prototype._action = function () {
+    this.owner.setX(this.owner.getX() + 10);
+    this.owner.setY(mk.config.PLAYER_TOP);
+  };
+
+  mk.moves.WalkBack = function (owner) {
+    mk.moves.CycleMove.call(this, {
+      owner: owner,
+      type: mk.moves.types.WALK_BACKWARD,
+      steps: 9
+    });
+  };
+
+  mk.moves.WalkBack.prototype = new mk.moves.CycleMove();
+
+  mk.moves.WalkBack.prototype._action = function () {
+    this.owner.setX(this.owner.getX() - 10);
+    this.owner.setY(mk.config.PLAYER_TOP);
+  };
+
+  mk.moves.FiniteMove = function (owner, type, duration) {
+    mk.moves.Move.call(this, owner, type, duration);
+    this._bottom = undefined;
+  };
+
+  mk.moves.FiniteMove.prototype = new mk.moves.Move();
+
+  mk.moves.FiniteMove.prototype._moveNextStep = function () {
+    if (this._currentStep >= this._totalSteps - 1) {
+      this._currentStep = this._totalSteps - 1;
+    } else {
+      this._currentStep = this._currentStep + 1;
+    }
+  };
+
+  mk.moves.FiniteMove.prototype._beforeGo = function () {
+    this._bottom = this.owner.getBottom();
+    this.owner.lock();
+  };
+
+  mk.moves.FiniteMove.prototype._beforeStop = function () {
+    this.owner.unlock();
+  };
+
+  mk.moves.FiniteMove.prototype.keepDistance = function () {
+    var currentBottom = this.owner.getBottom();
+    if (currentBottom > this._bottom) {
+      this.owner.setY(this.owner.getY() + currentBottom - this._bottom);
+    }
+    if (currentBottom < this._bottom) {
+      this.owner.setY(this.owner.getY() - (this._bottom - currentBottom));
+    }
+  };
+
+  mk.moves.Fall = function (owner) {
+    mk.moves.FiniteMove.call(this, owner, mk.moves.types.FALL, 100);
+    this._totalSteps = 7;
+  };
+
+  mk.moves.Fall.prototype = new mk.moves.FiniteMove();
+
+  mk.moves.Fall.prototype._action = function () {
+    this.keepDistance();
+  };
+
+  mk.moves.Win = function (owner) {
+    mk.moves.FiniteMove.call(this, owner, mk.moves.types.WIN, 100);
+    this._totalSteps = 10;
+  };
+
+  mk.moves.Win.prototype = new mk.moves.FiniteMove();
+
+  mk.moves.Win.prototype._action = function () {
+    this.keepDistance();
+  };
+
+  mk.moves.Win.prototype._beforeGo = function () {
+    this.owner.lock();
+    this.owner.setY(mk.config.PLAYER_TOP);
+    this._bottom = this.owner.getBottom();
+  };
+
+  mk.moves.Squat = function (owner) {
+    mk.moves.FiniteMove.call(this, owner, mk.moves.types.SQUAT, 40);
+    this._totalSteps = 3;
+  };
+
+  mk.moves.Squat.prototype = new mk.moves.FiniteMove();
+
+  mk.moves.Squat.prototype._action = function () {
+    this.keepDistance();
+    if (this._currentStep === 2) {
+      this.stop();
+    }
+  };
+
+  mk.moves.Block = function (owner) {
+    mk.moves.FiniteMove.call(this, owner, mk.moves.types.BLOCK, 40);
+    this._totalSteps = 3;
+  };
+
+  mk.moves.Block.prototype = new mk.moves.FiniteMove();
+
+  mk.moves.Block.prototype._action = function () {
+    this.keepDistance();
+    if (this._currentStep === 2) {
+      this.stop();
+    }
+  };
+
+  mk.moves.StandUp = function (owner) {
+    mk.moves.FiniteMove.call(this, owner, mk.moves.types.STAND_UP, 100);
+    this._totalSteps = 3;
+  };
+
+  mk.moves.StandUp.prototype = new mk.moves.FiniteMove();
+
+  mk.moves.StandUp.prototype._action = function () {
+    if (this._currentStep === 2) {
+      this.stop();
+      this.owner.setMove(mk.moves.types.STAND);
+      this.owner.setY(mk.config.PLAYER_TOP);
+    }
+    this.keepDistance();
+  };
+
+  mk.moves.AttractiveStandUp = function (owner) {
+    mk.moves.FiniteMove.call(this, owner, mk.moves.types.ATTRACTIVE_STAND_UP, 100);
+    this._totalSteps = 4;
+  };
+
+  mk.moves.AttractiveStandUp.prototype = new mk.moves.FiniteMove();
+
+  mk.moves.AttractiveStandUp.prototype._action = function () {
+    if (this._currentStep === this._totalSteps - 1) {
+      this.stop();
+      this.owner.setMove(mk.moves.types.STAND);
+    } else {
+      this.keepDistance();
+    }
+  };
+
+  mk.moves.AttractiveStandUp.prototype._beforeStop = function () {
+    this.owner.unlock();
+    this.owner.setY(mk.config.PLAYER_TOP);
+  };
+
+  mk.moves.Endure = function (owner) {
+    mk.moves.Move.call(this, owner, mk.moves.types.ENDURE);
+    this._totalSteps = 3;
+  };
+
+  mk.moves.Endure.prototype = new mk.moves.Move();
+
+  mk.moves.Endure.prototype._action = function () {
+    if (this._currentStep === this._totalSteps - 1) {
+      this.stop();
+      this.owner.setMove(mk.moves.types.STAND);
+    }
+  };
+
+  mk.moves.Endure.prototype._beforeGo = function () {
+    this.owner.lock();
+  };
+
+  mk.moves.Endure.prototype._beforeStop = function () {
+    this.owner.unlock();
+  };
+
+  mk.moves.Endure.prototype._moveNextStep = function () {
+    this._currentStep += 1;
+  };
+
+  mk.moves.KnockDown = function (owner) {
+    mk.moves.Move.call(this, owner, mk.moves.types.KNOCK_DOWN, 80);
+    this._totalSteps = 10;
+  };
+
+  mk.moves.KnockDown.prototype = new mk.moves.Move();
+
+  mk.moves.KnockDown.prototype._action = function () {
+    if (this._currentStep === this._totalSteps - 1) {
+      this.stop();
+      this.owner.setMove(mk.moves.types.ATTRACTIVE_STAND_UP);
+    } else {
+      var xDisplacement = 25;
+      if (this.owner.getOrientation() === mk.fighters.orientations.LEFT) {
+        xDisplacement = -xDisplacement;
+      }
+      if (this._currentStep + 1 > (this._totalSteps - 1) / 2) {
+        this.owner.setY(this.owner.getY() + 10);
+        this.owner.setX(this.owner.getX() + xDisplacement);
+      } else {
+        this.owner.setY(this.owner.getY() + 10);
+        this.owner.setX(this.owner.getX() + xDisplacement);
+      }
+    }
+  };
+
+  mk.moves.KnockDown.prototype._beforeGo = function () {
+    this.owner.lock();
+  };
+
+  mk.moves.KnockDown.prototype._beforeStop = function () {
+    this.owner.unlock();
+  };
+
+  mk.moves.KnockDown.prototype._moveNextStep = function () {
+    this._currentStep += 1;
+  };
+
+  mk.moves.SquatEndure = function (owner) {
+    mk.moves.Move.call(this, owner, mk.moves.types.SQUAT_ENDURE);
+    this._totalSteps = 3;
+  };
+
+  mk.moves.SquatEndure.prototype = new mk.moves.Move();
+
+  mk.moves.SquatEndure.prototype._action = function () {
+    if (this._currentStep === this._totalSteps - 1) {
+      this.stop();
+      this.owner.setMove(mk.moves.types.SQUAT);
+    }
+    this.keepDistance();
+  };
+
+  mk.moves.SquatEndure.prototype._beforeGo = function () {
+    this.owner.lock();
+    if (this._bottom === undefined)
+      this._bottom = this.owner.getBottom();
+  };
+
+  mk.moves.SquatEndure.prototype._beforeStop = function () {
+    this.owner.unlock();
+  };
+
+  mk.moves.SquatEndure.prototype._moveNextStep = function () {
+    this._currentStep += 1;
+  };
+
+  mk.moves.SquatEndure.prototype.keepDistance = function () {
+    var currentBottom = this.owner.getBottom();
+    if (currentBottom > this._bottom) {
+      this.owner.setY(this.owner.getY() + currentBottom - this._bottom);
+    }
+    if (currentBottom < this._bottom) {
+      this.owner.setY(this.owner.getY() - (this._bottom - currentBottom));
+    }
+  };
+
+
+  mk.moves.Jump = function (owner) {
+    mk.moves.Move.call(this, owner, mk.moves.types.JUMP, 60);
+    this._totalSteps = 6;
+    this._moveBack = false;
+  };
+
+  mk.moves.Jump.prototype = new mk.moves.Move();
+
+  mk.moves.Jump.prototype._moveNextStep = function () {
+    if (!this._moveBack) {
+      this._currentStep += 1;
+    }
+    if (this._moveBack) {
+      this._currentStep -= 1;
+      if (this._currentStep <= 0) {
+        this.stop();
+        this.owner.setMove(mk.moves.types.STAND);
+      }
+    }
+    if (this._currentStep >= this._totalSteps) {
+      this._moveBack = true;
+      this._currentStep -= 1;
+    }
+  };
+
+  mk.moves.Jump.prototype._action = function () {
+    if (!this._moveBack) {
+      if (this._currentStep === 0) {
+        this.owner.setY(this.owner.getY() + 20);
+      } else {
+        this.owner.setY(this.owner.getY() - 20);
+      }
+    } else {
+      if (this._currentStep === this._totalSteps - 1) {
+        this.owner.setY(this.owner.getY() - 20);
+      } else {
+        this.owner.setY(this.owner.getY() + 25);
+      }
+    }
+  };
+
+  mk.moves.Jump.prototype._beforeStop = function () {
+    this.owner.unlock();
+  };
+
+  mk.moves.Jump.prototype._beforeGo = function () {
+    this._moveBack = false;
+    this.owner.lock();
+  };
+
+  mk.moves.ForwardJump = function (owner) {
+    mk.moves.Move.call(this, owner, mk.moves.types.FORWARD_JUMP, 80);
+    this._totalSteps = 8;
+    this._ownerHeight = owner.getVisibleHeight();
+  };
+
+  mk.moves.ForwardJump.prototype = new mk.moves.Move();
+
+  mk.moves.ForwardJump.prototype._beforeStop = function () {
+    this.owner.unlock();
+    this.owner.setHeight(this._ownerHeight);
+  };
+
+  mk.moves.ForwardJump.prototype._beforeGo = function () {
+    this.owner.lock();
+    this.owner.setHeight(this._ownerHeight / 2);
+  };
+
+  mk.moves.ForwardJump.prototype._moveNextStep = function () {
+    this._currentStep += 1;
+    if (this._currentStep >= this._totalSteps) {
+      this.stop();
+      this.owner.setMove(mk.moves.types.STAND);
+    }
+  };
+
+  mk.moves.ForwardJump.prototype._action = function () {
+    if (this._currentStep > (this._totalSteps - 1) / 2) { //Move down
+      this.owner.setY(this.owner.getY() + 26);
+      this.owner.setX(this.owner.getX() + 23);
+    } else { //Move up
+      this.owner.setY(this.owner.getY() - 26);
+      this.owner.setX(this.owner.getX() + 23);
+    }
+  };
+
+  mk.moves.BackwardJump = function (owner) {
+    mk.moves.Move.call(this, owner, mk.moves.types.BACKWARD_JUMP, 80);
+    this._totalSteps = 8;
+    this._ownerHeight = owner.getVisibleHeight();
+  };
+
+  mk.moves.BackwardJump.prototype = new mk.moves.Move();
+
+  mk.moves.BackwardJump.prototype._beforeStop = function () {
+    this.owner.unlock();
+    this.owner.setHeight(this._ownerHeight);
+  };
+
+  mk.moves.BackwardJump.prototype._beforeGo = function () {
+    this.owner.lock();
+    this.owner.setHeight(this._ownerHeight / 2);
+  };
+
+  mk.moves.BackwardJump.prototype._moveNextStep = function () {
+    this._currentStep += 1;
+    if (this._currentStep >= this._totalSteps) {
+      this.stop();
+      this.owner.setMove(mk.moves.types.STAND);
+    }
+  };
+
+  mk.moves.BackwardJump.prototype._action = function () {
+    if (this._currentStep > (this._totalSteps - 1) / 2) { //Move down
+      this.owner.setY(this.owner.getY() + 26);
+      this.owner.setX(this.owner.getX() - 23);
+    } else { //Move up
+      this.owner.setY(this.owner.getY() - 26);
+      this.owner.setX(this.owner.getX() - 23);
+    }
+  };
+
+/* * * * * * * * * * * * * * Standard attacks * * * * * * * * * * * * * * * */
+
+  mk.moves.Attack = function (options) {
+    options = options || {};
+    mk.moves.Move.call(this,
+      options.owner,
+      options.type,
+      options.duration || 40);
+    this._damage = options.damage;
+    this._totalSteps = options.steps;
+    this._moveBack = false;
+    this._hitPassed = false;
+    this._returnStand = options.returnStand || mk.moves.types.STAND;
+    this._returnStandStep = options.returnStandStep || 0;
+  };
+
+  mk.moves.Attack.prototype = new mk.moves.Move();
+
+  mk.moves.Attack.prototype._moveNextStep = function () {
+    if (!this._moveBack) {
+      this._currentStep += 1;
+    }
+    if (this._moveBack) {
+      this._currentStep -= 1;
+      if (this._currentStep <= 0) {
+        this.stop();
+        this.owner.setMove(this._returnStand, this._returnStandStep);
+      }
+    }
+    if (this._currentStep >= this._totalSteps) {
+      if (this._dontReturn) {
+        this.stop();
+        this.owner.setMove(this._returnStand);
+      } else {
+        this._moveBack = true;
+        this._currentStep -= 1;
+      }
+    }
+  };
+
+  mk.moves.Attack.prototype._action = function () {
+    this.keepDistance();
+    if (!this._hitPassed &&
+      this._currentStep === Math.round(this._totalSteps / 2)) {
+      this.owner.attack(this.getDamage());
+      this._hitPassed = true;
+    }
+  };
+
+  mk.moves.Attack.prototype.getDamage = function () {
+    return this._damage;
+  };
+
+  mk.moves.Attack.prototype._beforeStop = function () {
+    this.owner.unlock();
+  };
+
+  mk.moves.Attack.prototype._beforeGo = function () {
+    this._moveBack = false;
+    this._hitPassed = false;
+    this.owner.lock();
+    this._bottom = this.owner.getBottom();
+  };
+
+  mk.moves.Attack.prototype.keepDistance = function () {
+    var currentBottom = this.owner.getBottom();
+    if (currentBottom > this._bottom) {
+      this.owner.setY(this.owner.getY() + currentBottom - this._bottom);
+    }
+    if (currentBottom < this._bottom) {
+      this.owner.setY(this.owner.getY() - (this._bottom - currentBottom));
+    }
+  };
+
+  mk.moves.HighKick = function (owner) {
+    mk.moves.Attack.call(this, {
+      owner: owner,
+      type: mk.moves.types.HIGH_KICK,
+      steps: 7,
+      damage: 10
+    });
+  };
+
+  mk.moves.HighKick.prototype = new mk.moves.Attack();
+
+
+  mk.moves.LowKick = function (owner) {
+    mk.moves.Attack.call(this, {
+      owner: owner,
+      type: mk.moves.types.LOW_KICK,
+      steps: 6,
+      damage: 6
+    });
+  };
+
+  mk.moves.LowKick.prototype = new mk.moves.Attack();
+
+  mk.moves.LowPunch = function (owner) {
+    mk.moves.Attack.call(this, {
+      owner: owner,
+      type: mk.moves.types.LOW_PUNCH,
+      steps: 5,
+      damage: 5
+    });
+  };
+
+  mk.moves.LowPunch.prototype = new mk.moves.Attack();
+
+
+  mk.moves.HighPunch = function (owner) {
+    mk.moves.Attack.call(this, {
+      owner: owner,
+      type: mk.moves.types.HIGH_PUNCH,
+      steps: 5,
+      damage: 8
+    });
+  };
+
+  mk.moves.HighPunch.prototype = new mk.moves.Attack();
+
+
+  mk.moves.Uppercut = function (owner) {
+    mk.moves.Attack.call(this, {
+      owner: owner,
+      type: mk.moves.types.UPPERCUT,
+      steps: 5,
+      damage: 13,
+      duration: 60
+    });
+  };
+
+  mk.moves.Uppercut.prototype = new mk.moves.Attack();
+
+  mk.moves.Uppercut.prototype._beforeStop = function () {
+    this.owner.unlock();
+    this.keepDistance();
+  };
+
+  mk.moves.Uppercut.prototype._action = function () {
+    this.keepDistance();
+    if (!this._hitPassed &&
+      this._currentStep === Math.round(this._totalSteps / 2)) {
+      this.owner.attack(this.getDamage());
+      this._hitPassed = true;
+    }
+  };
+
+  mk.moves.SquatLowKick = function (owner) {
+    mk.moves.Attack.call(this, {
+      type: mk.moves.types.SQUAT_LOW_KICK,
+      owner: owner,
+      steps: 3,
+      damage: 4,
+      duration: 70,
+      returnStand: mk.moves.types.SQUAT,
+      returnStandStep: 2
+    });
+  };
+
+  mk.moves.SquatLowKick.prototype = new mk.moves.Attack();
+
+  mk.moves.SquatHighKick = function (owner) {
+    mk.moves.Attack.call(this, {
+      type: mk.moves.types.SQUAT_HIGH_KICK,
+      owner: owner,
+      steps: 4,
+      damage: 6,
+      duration: 70,
+      returnStand: mk.moves.types.SQUAT,
+      returnStandStep: 2
+    });
+  };
+
+  mk.moves.SquatHighKick.prototype = new mk.moves.Attack();
+
+  mk.moves.SquatLowPunch = function (owner) {
+    mk.moves.Attack.call(this, {
+      type: mk.moves.types.SQUAT_LOW_PUNCH,
+      owner: owner,
+      steps: 3,
+      damage: 4,
+      duration: 70,
+      returnStand: mk.moves.types.SQUAT,
+      returnStandStep: 2
+    });
+  };
+
+  mk.moves.SquatLowPunch.prototype = new mk.moves.Attack();
+
+  mk.moves.SpinKick = function (owner) {
+    mk.moves.Attack.call(this, {
+      owner: owner,
+      type: mk.moves.types.SPIN_KICK,
+      steps: 8,
+      damage: 13,
+      duration: 60,
+      returnStand: mk.moves.types.STAND
+    });
+    this._dontReturn = true;
+  };
+
+  mk.moves.SpinKick.prototype = new mk.moves.Attack();
+
+  mk.moves.JumpAttack = function (owner, type, damage, isForward) {
+    mk.moves.Attack.call(this, {
+      owner: owner,
+      type: type,
+      steps: 3,   //to be overriden by the fighter
+      damage: damage,
+      duration: 80
+    });
+    this._offset = {
+      x: -23,
+      y: 26
+    };
+    if (isForward) {
+      this._offset = {
+        x: 23,
+        y: 26
+      };
+    }
+    this._totalPics = 2;
+    this._counter = 0;
+  };
+
+  mk.moves.JumpAttack.prototype = new mk.moves.Attack();
+
+  mk.moves.JumpAttack.prototype._moveNextStep = function () {
+    this._currentStep += 1;
+    this._counter += 1;
+    if (this._totalPics <= this._currentStep) {
+      this._currentStep = this._totalPics;
+    }
+    if (this._counter >= this._totalSteps) {
+      if (this.owner.getMove().type !== mk.moves.types.WIN) {
+        this.stop();
+        this.owner.setMove(mk.moves.types.STAND);
+        this.owner.setY(mk.config.PLAYER_TOP);
+      }
+    }
+  };
+
+  mk.moves.JumpAttack.prototype._action = function () {
+    if (!this._hitPassed &&
+      this._currentStep === this._totalPics) {
+      this.owner.attack(this.getDamage());
+      this._hitPassed = true;
+    }
+    this.owner.setY(this.owner.getY() + this._offset.y);
+    this.owner.setX(this.owner.getX() + this._offset.x);
+  };
+
+  mk.moves.JumpAttack.prototype._beforeGo = function () {
+    this._hitPassed = false;
+    this._counter = 0;
+    this.owner.lock();
+  };
+
+  mk.moves.JumpKick = function (owner, isForward) {
+    var type = mk.moves.types.BACKWARD_JUMP_KICK;
+    if (isForward) {
+      type = mk.moves.types.FORWARD_JUMP_KICK;
+    }
+    mk.moves.JumpAttack.call(this, owner, type, 10, isForward);
+  };
+
+  mk.moves.JumpKick.prototype = new mk.moves.JumpAttack();
+
+  mk.moves.JumpPunch = function (owner, isForward) {
+    var type = mk.moves.types.BACKWARD_JUMP_PUNCH;
+    if (isForward) {
+      type = mk.moves.types.FORWARD_JUMP_PUNCH;
+    }
+    mk.moves.JumpAttack.call(this, owner, type, 9, isForward);
+  };
+
+  mk.moves.JumpPunch.prototype = new mk.moves.JumpAttack();
+
+
+
+
+/* * * * * * * * * * * * * * End of the standard attacks * * * * * * * * * * * * * * * */
+
+/* * * * * * * * * * * * * End of the movements definition * * * * * * * * * * * * * * */
+
+
+
+  mk.fighters = {};
+
+  mk.fighters.list = {
+    'subzero': true,
+    'kano': true
+  };
+
+  mk.fighters.orientations = {
+    LEFT: 'left',
+    RIGHT: 'right'
+  };
+
+  mk.fighters.Fighter = function (options) {
+    var name = options.name.toLowerCase();
+    if (!mk.fighters.list[name]) {
+      throw 'Invalid fighter name!';
+    }
+    this._name = name;
+    this._arena = options.arena;
+    this._game = options.game;
+    this._life = 100;
+    this._orientation = options.orientation;
+    this._width = 30;
+    this._height = 60;
+    this._locked = false;
+    this._position = {
+      x: 50,
+      y: mk.config.PLAYER_TOP
+    };
+    this.init();
+  };
+
+  mk.fighters.Fighter.prototype.init = function (callback) {
+    this.moves = {};
+    this.moves[mk.moves.types.STAND] = new mk.moves.Stand(this);
+    this.moves[mk.moves.types.WALK] = new mk.moves.Walk(this);
+    this.moves[mk.moves.types.WALK_BACKWARD] = new mk.moves.WalkBack(this);
+    this.moves[mk.moves.types.SQUAT] = new mk.moves.Squat(this);
+    this.moves[mk.moves.types.BLOCK] = new mk.moves.Block(this);
+    this.moves[mk.moves.types.STAND_UP] = new mk.moves.StandUp(this);
+    this.moves[mk.moves.types.ATTRACTIVE_STAND_UP] = new mk.moves.AttractiveStandUp(this);
+    this.moves[mk.moves.types.HIGH_KICK] = new mk.moves.HighKick(this);
+    this.moves[mk.moves.types.LOW_KICK] = new mk.moves.LowKick(this);
+    this.moves[mk.moves.types.SPIN_KICK] = new mk.moves.SpinKick(this);
+    this.moves[mk.moves.types.LOW_PUNCH] = new mk.moves.LowPunch(this);
+    this.moves[mk.moves.types.HIGH_PUNCH] = new mk.moves.HighPunch(this);
+    this.moves[mk.moves.types.UPPERCUT] = new mk.moves.Uppercut(this);
+    this.moves[mk.moves.types.SQUAT_LOW_KICK] = new mk.moves.SquatLowKick(this);
+    this.moves[mk.moves.types.SQUAT_HIGH_KICK] = new mk.moves.SquatHighKick(this);
+    this.moves[mk.moves.types.SQUAT_LOW_PUNCH] = new mk.moves.SquatLowPunch(this);
+    this.moves[mk.moves.types.FALL] = new mk.moves.Fall(this);
+    this.moves[mk.moves.types.KNOCK_DOWN] = new mk.moves.KnockDown(this);
+    this.moves[mk.moves.types.WIN] = new mk.moves.Win(this);
+    this.moves[mk.moves.types.JUMP] = new mk.moves.Jump(this);
+    this.moves[mk.moves.types.FORWARD_JUMP_KICK] = new mk.moves.JumpKick(this, true);
+    this.moves[mk.moves.types.BACKWARD_JUMP_KICK] = new mk.moves.JumpKick(this, false);
+    this.moves[mk.moves.types.FORWARD_JUMP_PUNCH] = new mk.moves.JumpPunch(this, true);
+    this.moves[mk.moves.types.BACKWARD_JUMP_PUNCH] = new mk.moves.JumpPunch(this, false);
+    this.moves[mk.moves.types.ENDURE] = new mk.moves.Endure(this);
+    this.moves[mk.moves.types.SQUAT_ENDURE] = new mk.moves.SquatEndure(this);
+    this.moves[mk.moves.types.FORWARD_JUMP] = new mk.moves.ForwardJump(this);
+    this.moves[mk.moves.types.BACKWARD_JUMP] = new mk.moves.BackwardJump(this);
+
+    var self = this,
+      initialized = 0,
+      total = Object.keys(this.moves).length;
+
+    for (var move in this.moves) {
+      this.moves[move].init(function () {
+        initialized += 1;
+        if (initialized === total) {
+          if (typeof callback === 'function') {
+            callback();
+          }
+        }
+      });
+    }
+  };
+
+  mk.fighters.Fighter.prototype.isJumping = function () {
+    if (!this._currentMove) return false;
+    var move = this._currentMove.type,
+      m = mk.moves.types;
+    if (move === m.JUMP || move === m.BACKWARD_JUMP ||
+      move === m.FORWARD_JUMP || move === m.FORWARD_JUMP_KICK ||
+      move === m.BACKWARD_JUMP_KICK || move === m.FORWARD_JUMP_PUNCH ||
+      move === m.BACKWARD_JUMP_PUNCH) {
+      return true;
+    }
+    return false;
+  };
+
+  mk.fighters.Fighter.prototype.getName = function () {
+    return this._name;
+  };
+
+  mk.fighters.Fighter.prototype.setArena = function (arena) {
+    this._arena = arena;
+  };
+
+  mk.fighters.Fighter.prototype.getWidth = function () {
+    if (this._currentState && this._currentState.width) {
+      return this._currentState.width;
+    }
+    return this._width;
+  };
+
+  mk.fighters.Fighter.prototype.getVisibleWidth = function () {
+    return this._width;
+  };
+
+  mk.fighters.Fighter.prototype.getVisibleHeight = function () {
+    if (this._currentState && this._currentState.height) {
+      return this._currentState.height;
+    }
+    return this._height;
+  };
+
+  mk.fighters.Fighter.prototype.getVisibleHeight = function () {
+    return this._height;
+  };
+
+  mk.fighters.Fighter.prototype.setHeight = function (height) {
+    this._height = height;
+  };
+
+  mk.fighters.Fighter.prototype.setWidth = function (width) {
+    this._width = width;
+  };
+
+  mk.fighters.Fighter.prototype.setOrientation = function (orientation) {
+    this._orientation = orientation;
+  };
+
+  mk.fighters.Fighter.prototype.getOrientation = function (orientation) {
+    return this._orientation;
+  };
+
+  mk.fighters.Fighter.prototype.refresh = function () {
+    if (this._arena && typeof this._arena.refresh === 'function') {
+      this._arena.refresh(this);
+    }
+  };
+
+  mk.fighters.Fighter.prototype.getX = function () {
+    return this._position.x;
+  };
+
+  mk.fighters.Fighter.prototype.lock = function () {
+    this._locked = true;
+  };
+
+  mk.fighters.Fighter.prototype.unlock = function () {
+    this._locked = false;
+  };
+
+  mk.fighters.Fighter.prototype.getY = function () {
+    return this._position.y;
+  };
+
+  mk.fighters.Fighter.prototype.setX = function (x) {
+    this._position.x = this._arena.moveFighter(this, { x: x, y: this.getY() }).x;
+  };
+
+  mk.fighters.Fighter.prototype.setY = function (y) {
+    this._position.y = y;
+  };
+
+  mk.fighters.Fighter.prototype.setState = function (state) {
+    this._currentState = state;
+  };
+
+  mk.fighters.Fighter.prototype.getState = function () {
+    return this._currentState;
+  };
+
+  mk.fighters.Fighter.prototype.attack = function (damage) {
+    this._game.fighterAttacked(this, damage);
+  };
+
+  mk.fighters.Fighter.prototype.endureAttack = function (damage, attackType) {
+    var m = mk.moves.types;
+
+    if (this.getMove().type === m.BLOCK) {
+      damage *= mk.config.BLOCK_DAMAGE;
+    } else {
+      this.unlock();
+      if (this.getMove().type === m.SQUAT) {
+        this.setMove(m.SQUAT_ENDURE);
+      } else {
+        if (attackType === m.UPPERCUT ||
+          attackType === m.SPIN_KICK) {
+          this.setMove(m.KNOCK_DOWN);
+        } else {
+          this.setMove(m.ENDURE);
+        }
+      }
+    }
+    this.setLife(this.getLife() - damage);
+    if (this.getLife() === 0) {
+      this._game.fighterDead(this);
+      this.unlock();
+      this.setMove(mk.moves.types.FALL);
+    }
+    return this.getLife();
+  };
+
+  mk.fighters.Fighter.prototype.setLife = function (life) {
+    this._life = Math.max(life, 0);
+  };
+
+  mk.fighters.Fighter.prototype.getLife = function () {
+    return this._life;
+  };
+
+  mk.fighters.Fighter.prototype.getBottom = function () {
+    var bottomY = this._currentState.height + this.getY();
+    return this._arena.height - bottomY;
+  };
+
+  mk.fighters.Fighter.prototype.setMove = function (move, step) {
+    step = step || 0;
+    var m = mk.moves.types,
+      currentMove = this._currentMove;
+
+    if (!(move in this.moves))
+      throw 'This player does not has the move - ' + move;
+
+    if (this._currentMove && this._currentMove.type === move)
+      return;
+
+    if (move === m.FORWARD_JUMP_KICK || move === m.BACKWARD_JUMP_KICK ||
+      move === m.FORWARD_JUMP_PUNCH || move === m.BACKWARD_JUMP_PUNCH) {
+      if (currentMove._currentStep >= currentMove._totalSteps / 2) {
+        this._currentMove.stop();
+        this.unlock();
+        this._currentMove = this.moves[move];
+        this._currentMove._totalSteps = currentMove._totalSteps - currentMove._currentStep;
+      }
+    }
+
+    if (this._locked && move !== m.WIN)
+      return;
+
+    if (this._currentMove && typeof this._currentMove.stop === 'function')
+      this._currentMove.stop();
+
+    this._currentMove = this.moves[move];
+    this._currentMove.go(step);
+  };
+
+  mk.fighters.Fighter.prototype.getMove = function () {
+    return this._currentMove;
+  };
+
+  window.mk = mk;
+
+}());
+===== END ./public/src/mk.js =====
+
+===== START ./public/src/movement.js =====
+/*
+
+Copyright (C) 2013 @mgechev Minko Gechev
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ */
+;(function (w) {
+  'use strict';
+
+  var Movement = {};
+
+  Movement.constants = {
+    WIDTH: 400,
+    HEIGHT: 300,
+    MOTION_LIMIT: 79680,
+    MIN_FRAMES_WITHOUT_MOTION: 48,
+    FRAME_RATE: 5,
+    NOICE_DIFF: 15
+  };
+
+  Movement.movements = {
+    STAND: 'stand',
+    LEFT_ARM_UP: 'left-arm-up',
+    RIGHT_ARM_UP: 'right-arm-up',
+    ARMS_UP: 'arms-up',
+    SQUAT_LEFT_ARM_UP: 'squat-left-arm-up',
+    SQUAT_RIGHT_ARM_UP: 'squat-right-arm-up',
+    LEFT_LEG_UP: 'left-leg-up',
+    SQUAT: 'squat',
+    EMPTY: 'empty',
+    RIGHT_LEG_UP: 'right-leg-up'
+  };
+
+  Movement.positions = {
+    LEFT: 'left',
+    RIGHT: 'right',
+    MIDDLE: 'middle',
+    EMPTY: 'empty'
+  };
+
+  var Filters = {};
+
+  Filters.getPixels = function(img) {
+    var c = this.getCanvas(img.width, img.height),
+      ctx = c.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    return ctx.getImageData(0,0,c.width,c.height);
+  };
+
+  Filters.getCanvas = function(w,h) {
+    var c = document.createElement('canvas');
+    c.width = w;
+    c.height = h;
+    return c;
+  };
+
+  Filters.filterImage = function(filter, image, var_args) {
+    var args = [this.getPixels(image)];
+    for (var i=2; i<arguments.length; i++) {
+      args.push(arguments[i]);
+    }
+    return filter.apply(null, args);
+  };
+
+  Filters.grayscale = function(pixels, args) {
+    var d = pixels.data;
+    for (var i=0; i<d.length; i+=4) {
+      var r = d[i],
+        g = d[i + 1],
+        b = d[i + 2],
+        v = 0.2126*r + 0.7152*g + 0.0722*b;
+      d[i] = d[i + 1] = d[i + 2] = v;
+    }
+    return pixels;
+  };
+
+  Filters.threshold = function(pixels, threshold) {
+    var d = pixels.data;
+    for (var i=0; i<d.length; i+=4) {
+      var r = d[i],
+        g = d[i + 1],
+        b = d[i + 2],
+        v = (0.2126*r + 0.7152*g + 0.0722*b >= threshold) ? 255 : 0;
+      d[i] = d[i + 1] = d[i + 2] = v;
+    }
+    return pixels;
+  };
+
+  Filters.difference = function(below, above) {
+    var a = below.data,
+      b = above.data,
+      dst = a,
+      f = 1/255;
+    for (var i = 0; i < a.length; i += 4) {
+      dst[i] = Math.abs(a[i] - b[i]);
+      dst[i + 1] = Math.abs(a[i + 1] - b[i + 1]);
+      dst[i + 2] = Math.abs(a[i + 2] - b[i + 2]);
+      dst[i + 3] = a[i + 3] + ((255 - a[i + 3]) * b[i + 3]) * f;
+    }
+    return below;
+  };
+
+  Filters.horizontalIntensityStatistics = function (pixels) {
+    var d = pixels.data,
+      w = pixels.width,
+      h = pixels.height,
+      g = [],
+      current;
+    for (var i = 0; i < h; i += 1) {
+      for (var j = 0; j < w; j += 1) {
+        current = g[j] || 0;
+        g[j] = current + d[(i * w * 4) + (j * 4)];
+      }
+    }
+    return g;
+  };
+
+  Filters.verticalIntensityStatistics = function (pixels) {
+    var d = pixels.data,
+      w = pixels.width,
+      h = pixels.height,
+      g = [];
+    for (var i = 0; i < h; i += 1) {
+      g[i] = 0;
+      for (var j = 0; j < w; j += 1) {
+        g[i] += d[(i * w * 4) + (j * 4)];
+      }
+    }
+    return g;
+  };
+
+  var vid,
+      can,
+      background,
+      last,
+      diffCanvas,
+      initialized,
+      previous = false,
+      backgroundInitialized = false,
+      lastPosition,
+      lastMovement,
+      framesWithoutMotion = 0,
+      getUserMedia =
+        navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia,
+      URL = w.URL || w.webkitURL || w.mozURL;
+
+  Movement.init = function (options) {
+    var self = this;
+    Movement.options = options;
+    vid = document.createElement('video');
+    document.body.appendChild(vid);
+    vid.style.position = 'absolute';
+    vid.style.visibility = 'hidden';
+    vid.width = Movement.constants.WIDTH;
+    vid.height = Movement.constants.HEIGHT;
+    this._initCanvases();
+    getUserMedia.call(navigator, { video: true }, function (stream) {
+      if (!initialized) {
+        initialized = true;
+        vid.src = URL.createObjectURL(stream);
+        vid.play();
+        self._start();
+      }
+      initialized = true;
+    }, function () {
+      alert('Access forbidden');
+    });
+  };
+
+  Movement._initCanvases = function () {
+    can = document.createElement('canvas');
+    document.body.appendChild(can);
+    can.id = 'movementjs-main-canvas';
+    can.style.position = 'absolute';
+    can.style.visibility = 'visible';
+
+    background = document.createElement('canvas');
+    document.body.appendChild(background);
+    background.style.position = 'absolute';
+    background.style.visibility = 'hidden';
+
+    last = document.createElement('canvas');
+    document.body.appendChild(last);
+    last.style.position = 'absolute';
+    last.style.visibility = 'hidden';
+
+    diffCanvas = document.createElement('canvas');
+    document.body.appendChild(diffCanvas);
+    diffCanvas.style.position = 'absolute';
+    diffCanvas.style.visibility = 'hidden';
+
+//    test1 = document.createElement('canvas');
+//    document.body.appendChild(test1);
+//
+//    test2 = document.createElement('canvas');
+//    document.body.appendChild(test2);
+
+    diffCanvas.width = last.width = background.width = can.width = Movement.constants.WIDTH;
+    diffCanvas.height = last.height = background.height = can.height = Movement.constants.HEIGHT;
+
+//    test2.width = Movement.constants.HEIGHT * 2;
+//    test2.height = 255;
+//
+//    test1.width = Movement.constants.WIDTH * 2;
+//    test1.height = 255;
+  };
+
+  Movement._start = function () {
+    var interval = 1000 / Movement.constants.FRAME_RATE,
+      self = this;
+    setInterval(function () {
+      self._handleFrame();
+    }, interval);
+  };
+
+  Movement._handleFrame = function () {
+    if (!backgroundInitialized) {
+      this._initializeBackground();
+      backgroundInitialized = true;
+    } else {
+      this._processFrame();
+    }
+  };
+
+  Movement._processFrame = function () {
+    var data = Filters.filterImage(Filters.grayscale, vid);
+    this._putData(can, data);
+    data = Filters.filterImage(Filters.difference, can, this._getData(background));
+    this._putData(can, data);
+    data = Filters.filterImage(Filters.threshold, can, 50);
+    this._putData(can, data);
+    if (previous) {
+      this._handleChanges();
+    } else {
+      previous = true;
+    }
+    last.getContext('2d').drawImage(can, 0, 0, can.width, can.height);
+  };
+
+  Movement._handleChanges = function () {
+    var diff = Filters.filterImage(Filters.difference, can, this._getData(last)),
+      diffStat;
+    this._putData(diffCanvas, diff);
+    diff = Filters.filterImage(Filters.threshold, diffCanvas, 50);
+    this._putData(diffCanvas, diff);
+    diffStat = Filters.filterImage(Filters.horizontalIntensityStatistics, can);
+    if (this._activeGesture(diffStat)) {
+      var diffH = Filters.filterImage(Filters.horizontalIntensityStatistics, can),
+        diffV = Filters.filterImage(Filters.verticalIntensityStatistics, can),
+        stand = this._stand(diffH),
+        empty = this._sceneEmpty(diffH),
+        currentMovement = this._recognizeGesture(diffH, diffV, stand, empty),
+        currentPos = this._recognizePosition(diffH, diffV, stand, empty);
+      this._triggerChanges(currentMovement, currentPos);
+    }
+  };
+
+  Movement._triggerChanges = function (movement, position) {
+    var o = Movement.options,
+      callback;
+    if (movement !== lastMovement) {
+      callback = o.movementChanged;
+      if (typeof callback === 'function') {
+        callback.call(null, movement);
+        lastMovement = movement;
+      }
+    }
+    if (position !== lastPosition) {
+      callback = o.positionChanged;
+      if (typeof callback === 'function') {
+        callback.call(null, position);
+        lastPosition = position;
+      }
+    }
+  };
+
+  Movement._initializeBackground = function () {
+    var currentData = Filters.filterImage(Filters.grayscale, vid);
+    this._putData(background, currentData);
+  };
+
+  Movement._activeGesture = function (diff) {
+    var changedPixels = 0;
+    for (var i = 0; i < diff.length; i += 1) {
+      changedPixels += diff[i];
+    }
+    if (changedPixels / 255 <= Movement.constants.MOTION_LIMIT) {
+       framesWithoutMotion += 1;
+    } else {
+      framesWithoutMotion = 0;
+    }
+    if (framesWithoutMotion >= Movement.constants.MIN_FRAMES_WITHOUT_MOTION) {
+      return true;
+    }
+    return false;
+  };
+
+  Movement._recognizePosition = function (diffH, diffV, stand, empty) {
+    var p = this.positions;
+    if (this._leftSide(diffH)) {
+      return p.LEFT;
+    } else if (this._rightSide(diffH)) {
+      return p.RIGHT;
+    } else if (stand || !empty) {
+      return p.MIDDLE;
+    } else {
+      return p.EMPTY;
+    }
+  };
+
+  Movement._recognizeGesture = function (diffH, diffV, stand, empty) {
+    var leftHandUp,
+      rightHandUp,
+      limbDown,
+      m = this.movements;
+
+    if (empty) {
+      return m.EMPTY;
+    } else {
+      leftHandUp = this._leftHandUp(diffH);
+      rightHandUp = this._rightHandUp(diffH);
+      if (stand) {
+        if (leftHandUp || rightHandUp) {
+          limbDown = this._limbDown(diffV);
+          if (limbDown) {
+            if (leftHandUp) {
+              return m.LEFT_LEG_UP;
+            } else if (rightHandUp) {
+              return m.RIGHT_LEG_UP;
+            }
+          } else {
+            if (leftHandUp && rightHandUp) {
+              return m.ARMS_UP;
+            } else if (leftHandUp) {
+              return m.LEFT_ARM_UP;
+            } else if (rightHandUp) {
+              return m.RIGHT_ARM_UP;
+            }
+          }
+        }
+        return m.STAND;
+      } else {
+        if (leftHandUp) {
+          return m.SQUAT_LEFT_ARM_UP;
+        } else if (rightHandUp) {
+          return m.SQUAT_RIGHT_ARM_UP;
+        } else {
+          return m.SQUAT;
+        }
+      }
+    }
+  };
+
+// For testing purposes
+//  function draw(d, c) {
+//    var w = c.width,
+//      h = c.height;
+//    c = c.getContext('2d');
+//    c.fillStyle = '#fff';
+//    c.fillRect(0, 0, w, h);
+//    c.fillStyle = '#000';
+//    for (var i = 0; i < d.length; i += 1) {
+//       c.fillRect(2 * i, 0, 2, d[i] / 400);
+//    }
+//    c.fillStyle = '#000';
+//  }
+//
+  Movement._sceneEmpty = function (data) {
+    var minDiff = Movement.constants.NOICE_DIFF,
+      bigger = 0;
+    for (var i = 0; i < data.length; i += 1) {
+      if (data[i] / 255 > minDiff) {
+        bigger += 1;
+      }
+    }
+    return bigger > minDiff ? false : true;
+  };
+
+  Movement._stand = function (data) {
+    var requiredHeight = Movement.constants.HEIGHT * 0.3,
+      requiredWidth = Movement.constants.WIDTH * 0.1,
+      middlePix = 0;
+    for (var i = 0; i < data.length; i += 1) {
+      if (data[i] / 255 >= requiredHeight) {
+        middlePix += 1;
+      }
+    }
+    return (middlePix >= requiredWidth) ? true : false;
+  };
+
+  Movement._armsUp = function (data) {
+    var width = Movement.constants.WIDTH,
+      height = Movement.constants.HEIGHT,
+      middle = Math.floor(data.length / 2),
+      left = middle,
+      right = middle,
+      minWidth = width * 0.8;
+    for (var i = middle; i < data.length; i += 1) {
+      if (data[i] / 255 > minWidth) {
+        left -= 1;
+        right += 1;
+      }
+      if (right - left > height * 0.04) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  Movement._rightHandUp = function (data) {
+    var minHeight = Movement.constants.HEIGHT * 0.05,
+      moved = 0;
+    for (var i = 0; i < data.length * 0.6; i += 1) {
+      if (data[i] / 255 >= minHeight) {
+        moved += 1;
+      }
+    }
+    return moved >= data.length / 2;
+  };
+
+  Movement._leftHandUp = function (data) {
+    var minHeight = Movement.constants.HEIGHT * 0.05,
+      moved = 0;
+    for (var i = data.length - 1; i > data.length * 0.4; i -= 1) {
+      if (data[i] / 255 >= minHeight) {
+        moved += 1;
+      }
+    }
+    return moved >= data.length / 2;
+  };
+
+  Movement._rightSide = function (data) {
+    var minHeight = Movement.constants.HEIGHT * 0.2,
+      moved = 0;
+    for (var i = 0; i < data.length * 0.3; i += 1) {
+      if (data[i] / 255 >= minHeight) {
+        moved += 1;
+      }
+    }
+    return moved >= data.length * 0.1;
+  };
+
+  Movement._leftSide = function (data) {
+    var minHeight = Movement.constants.HEIGHT * 0.2,
+      moved = 0;
+    for (var i = data.length - 1; i >= data.length * 0.7; i -= 1) {
+      if (data[i] / 255 >= minHeight) {
+        moved += 1;
+      }
+    }
+    return moved >= data.length * 0.1;
+  };
+
+  Movement._limbDown = function (data) {
+    var down = 0,
+        up = 0,
+        armBoundry = Math.floor(data.length * 0.4),
+        legBoundry = Math.floor(data.length * 0.7),
+        i;
+
+    for (i = armBoundry; i < legBoundry; i += 1) {
+      up += data[i] / 255;
+    }
+    for (i = legBoundry; i < data.length; i += 1) {
+      down += data[i] / 255;
+    }
+    return down > up;
+  };
+
+  Movement._putData = function (canvas, data) {
+    canvas.getContext('2d').putImageData(data, 0, 0);
+  };
+
+  Movement._getData = function (canvas) {
+    return canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
+  };
+
+  w.Movement = Movement;
+
+}(window));
+===== END ./public/src/movement.js =====
+
+===== START ./public/styles/styles.css =====
+table {
+    margin: auto;
+}
+td {
+    padding: 10px;
+}
+th {
+    font-size: 19px;
+}
+.instructions-list {
+    margin-left: 150px;
+}
+h1 {
+    text-align: center;
+}
+canvas {
+    border: 3px solid white;
+    border-radius: 5px;
+}
+#movementjs-main-canvas {
+    -webkit-transform: scale(-1, 1);
+    -moz-transform: scale(-1, 1);
+    position: static !important;
+    width: 600px;
+    height: 400px;
+    background-color: #777;
+}
+body, html {
+    background-color: black;
+    color: #fff;
+    font-family: Verdana;
+    font-size: 12px;
+}
+#parent {
+    width: 600px;
+    height: 400px;
+    position: relative;
+    border-radius: 10px;
+}
+#arena {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#loading {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.lifebar {
+    width: 200px;
+    height: 15px;
+    background-color: red;
+    position: absolute;
+}
+#player1LifeBar {
+    left: 20px;
+    top: 30px;
+    border-bottom-right-radius: 15px;
+}
+#player1LifeBar .life
+{
+    border-bottom-right-radius: 15px;
+    float: left;
+}
+#player2LifeBar {
+    right: 20px;
+    top: 30px;
+    border-bottom-left-radius: 15px;
+}
+#player2LifeBar .life
+{
+    border-bottom-left-radius: 15px;
+    float: right;
+}
+.playerName {
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    font-family: Verdana;
+    font-size: 14px;
+    position: absolute;
+}
+#player1Name {
+    left: 30px;
+    top: 10px;
+}
+#player2Name {
+    right: 30px;
+    top: 10px;
+}
+.life {
+    width: 100%;
+    height: 100%;
+    background-color: #3CD400;
+}
+#utils {
+    visibility: hidden;
+    z-index: 100;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+.manual {
+    width: 600px;
+    margin: auto;
+    color: #fff;
+    font-family: Verdana;
+    margin-top: 15px;
+    font-size: 14px;
+}
+.manual > div {
+    margin-left: 150px;
+}
+.manual a {
+    color: #fff;
+}
+.github {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background-image: url(../images/github.png);
+    width: 149px;
+    height: 149px;
+    cursor: pointer;
+}
+.formContainer {
+    margin: auto;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.loadingLabel {
+    font-size: 25px;
+    font-weight: bold;
+    position: absolute;
+    left: 220px;
+    top: 150px;
+}
+===== END ./public/styles/styles.css =====
+
+===== START ./readme.md =====
+# mk.js
+
+This project has been converted to a **Next.js 15** application. The game assets
+are now located under the `public/` directory and can be served by running the
+Next.js development server.
+
+This is simple fighting game created with HTML5 canvas and JavaScript. It has three game modes:
+* `Basic` - with one active and on inactive player.
+* `Multiplayer` - with two active players on one computer.
+
+Each mode can be easily chosen by picking a `gameType` when specifying the game options.
+
+The `multiplayer` mode can be tested [here](http://mk.mgechev.com/).
+
+
+
+For local development of the Next.js application run:
+
+    npm install
+    npm run dev
+
+The game will be available at `http://localhost:3000`.
+
+# Configuration
+
+In this section I'll describe in short how you can configure mk.js.
+
+* `arena` - object which contains different properties for the arena.
+    * `arena` - type of the arena. The different arenas are listed at: `mk.arenas.types`
+    * `container` - parent container of the canvas which is the actual arena.
+* `fighters` - array of two objects which are the two players.
+    * `name` - player's name. It's case insensitive string without any special characters and white space.
+* ` callbacks` - callbacks which will be invoked when some events happens.
+    * `attack`- callback which will be invoked on successful attack
+    * `game-end` - callback which will be invoked on game end
+    * `player-connected` - callback used when the second player connects in network mode (not supported in this setup).
+* `game-type` - specifies the game controller which will be used. Possible values are: `basic` and `multiplayer`.
+* `reset` - a method which reset the game. It clean some references and call the reset methods of lower level components. Calling it will lead to removal of the game canvas.
+
+# License
+
+This software is distributed under the terms of the MIT license.
+===== END ./readme.md =====
+
