@@ -75,7 +75,7 @@
   };
 
   mk.controllers.Base.prototype.getOpponent = function (f) {
-    return this._opponents[f.getName(name)];
+    return this._opponents[f.getName()];
   };
 
   mk.controllers.Base.prototype.init = function (promise) {
@@ -1673,10 +1673,6 @@
     if (this._currentState && this._currentState.height) {
       return this._currentState.height;
     }
-    return this._height;
-  };
-
-  mk.fighters.Fighter.prototype.getVisibleHeight = function () {
     return this._height;
   };
 
