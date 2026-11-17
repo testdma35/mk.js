@@ -23,6 +23,7 @@ The server will be started on port `55555`. Open your browser and go to `http://
 # Configuration
 
 In this section I'll describe in short how you can configure mk.js.
+Use these options to choose the arena, fighters, and game mode.
 
 * `arena` - object which contains different properties for the arena.
     * `arena` - type of the arena. The different arenas are listed at: `mk.arenas.types`
